@@ -42,15 +42,23 @@
         .dealer-name-animate { display: inline-block; background: linear-gradient(90deg, #fff, #93c5fd, #fff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; }
         .hero p { font-size: 13px; opacity: 0.75; max-width: 480px; margin: 0 auto; font-weight: 300; }
 
-        /* 3 PILAR KEPERCAYAAN (IKON) */
+        /* 3 PILAR KEPERCAYAAN */
         .trust-icons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 20px 6%; background: var(--dark-steel); }
         .trust-item { text-align: center; color: white; }
         .trust-item i { font-size: 20px; color: #fff; margin-bottom: 8px; display: block; }
         .trust-item span { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; display: block; line-height: 1.2; }
 
-        .dealer-slider { width: 100%; height: 250px; position: relative; overflow: hidden; background: #ddd; }
-        .dealer-slides { display: flex; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); height: 100%; }
-        .dealer-slides img { min-width: 100%; object-fit: cover; }
+        /* DEALER SLIDER (MANUAL & AUTO ENABLED) */
+        .dealer-slider-container { width: 100%; height: 250px; position: relative; background: #ddd; overflow: hidden; }
+        .dealer-slides-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; height: 100%; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
+        .dealer-slides-scroll::-webkit-scrollbar { display: none; }
+        .dealer-slide-item { min-width: 100%; height: 100%; scroll-snap-align: start; flex-shrink: 0; }
+        .dealer-slide-item img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; }
+        
+        /* SLIDER DOT INDICATOR */
+        .slider-dots { position: absolute; bottom: 15px; width: 100%; display: flex; justify-content: center; gap: 6px; pointer-events: none; }
+        .s-dot { width: 6px; height: 6px; background: rgba(255,255,255,0.4); border-radius: 50%; transition: 0.3s; }
+        .s-dot.active { background: white; transform: scale(1.3); width: 15px; border-radius: 10px; }
 
         /* CONTROLS */
         .controls { position: sticky; top: 120px; z-index: 990; background: var(--bg-light); padding: 20px 0 10px; }
@@ -68,7 +76,7 @@
         .gallery { position: relative; height: 260px; background: #fff; border-bottom: 1px solid #f1f5f9; }
         .gallery-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; height: 100%; scrollbar-width: none; }
         .slide { min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 20px; scroll-snap-align: start; }
-        .slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .slide img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; }
         .img-counter { position: absolute; bottom: 15px; right: 15px; background: rgba(15,23,42,0.8); color: white; padding: 4px 10px; border-radius: 6px; font-size: 10px; font-weight: 600; }
 
         .card-info { padding: 24px; }
@@ -102,7 +110,7 @@
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
         @keyframes shine { 0% { background-position: -200%; } 100% { background-position: 200%; } }
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-        #zoomModal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+        #zoomModal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; padding: 20px; }
     </style>
 </head>
 <body>
@@ -137,11 +145,20 @@
         </div>
     </div>
 
-    <div class="dealer-slider">
-        <div class="dealer-slides" id="localDealerSlides">
-            <img src="foto1.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+1'">
-            <img src="foto2.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'">
-            <img src="foto3.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+3'">
+    <div class="dealer-slider-container">
+        <div class="dealer-slides-scroll" id="dealerScroll" onscroll="handleDealerScroll()">
+            <div class="dealer-slide-item"><img src="foto1.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+1'"></div>
+            <div class="dealer-slide-item"><img src="foto2.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'"></div>
+            <div class="dealer-slide-item"><img src="foto3.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+3'"></div>
+            <div class="dealer-slide-item"><img src="foto4.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+4'"></div>
+            <div class="dealer-slide-item"><img src="foto5.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+5'"></div>
+        </div>
+        <div class="slider-dots" id="sliderDots">
+            <div class="s-dot active"></div>
+            <div class="s-dot"></div>
+            <div class="s-dot"></div>
+            <div class="s-dot"></div>
+            <div class="s-dot"></div>
         </div>
     </div>
 
@@ -176,7 +193,7 @@
         <div class="footer-tagline">Melayani sepenuh hati untuk penjualan Cash, Kredit, dan Service Resmi.</div>
     </footer>
 
-    <div id="zoomModal" onclick="this.style.display='none'"><img id="zoomImg" style="max-width:90%; border-radius:8px;"></div>
+    <div id="zoomModal" onclick="this.style.display='none'"><img id="zoomImg" style="max-width:100%; max-height:90vh; border-radius:8px; object-fit:contain;"></div>
 
     <script>
         const CONFIG = { API_URL: "https://sheetdb.io/api/v1/qjjio707oz536", WA_PHONE: "6285725493220" };
@@ -193,12 +210,21 @@
         }
         setInterval(updateRealTimeInfo, 1000); updateRealTimeInfo();
 
-        let currentSlide = 0;
+        // AUTO SLIDE & MANUAL SYNC
+        let dealerCurrentIdx = 0;
+        const dealerScroll = document.getElementById('dealerScroll');
+        const dots = document.querySelectorAll('.s-dot');
+
+        function handleDealerScroll() {
+            const idx = Math.round(dealerScroll.scrollLeft / dealerScroll.offsetWidth);
+            dealerCurrentIdx = idx;
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === idx));
+        }
+
         setInterval(() => {
-            const slides = document.getElementById('localDealerSlides');
-            currentSlide = (currentSlide + 1) % 3;
-            if(slides) slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-        }, 5000);
+            dealerCurrentIdx = (dealerCurrentIdx + 1) % 5;
+            dealerScroll.scrollTo({ left: dealerCurrentIdx * dealerScroll.offsetWidth, behavior: 'smooth' });
+        }, 6000);
 
         let v = localStorage.getItem('visit_count') || 1240;
         v = parseInt(v) + 1; localStorage.setItem('visit_count', v);

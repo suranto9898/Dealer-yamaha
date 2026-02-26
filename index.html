@@ -17,9 +17,10 @@
             --bg-light: #f8fafc;
             --white: #ffffff;
             --status-ok: #00ff88;
-            --ready-bg: #ecfdf5; --ready-text: #065f46;
-            --inden-bg: #fffbeb; --inden-text: #92400e;
-            --kosong-bg: #fef2f2; --kosong-text: #991b1b;
+            /* Warna Label Stok */
+            --ready-bg: #dcfce7; --ready-text: #166534;
+            --inden-bg: #fef9c3; --inden-text: #854d0e;
+            --kosong-bg: #fee2e2; --kosong-text: #991b1b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -41,11 +42,19 @@
         .hero h1 { font-size: 26px; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
         .dealer-name-animate { display: inline-block; background: linear-gradient(90deg, #fff, #93c5fd, #fff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; }
 
-        /* 3 PILAR KEPERCAYAAN */
-        .trust-icons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 20px 6%; background: var(--dark-steel); }
-        .trust-item { text-align: center; color: white; }
-        .trust-item i { font-size: 20px; color: #fff; margin-bottom: 8px; display: block; }
-        .trust-item span { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; display: block; line-height: 1.2; }
+        /* STOK BADGE STYLE */
+        .stok-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .stok-ready { background: var(--ready-bg); color: var(--ready-text); }
+        .stok-inden { background: var(--inden-bg); color: var(--inden-text); }
+        .stok-kosong { background: var(--kosong-bg); color: var(--kosong-text); }
 
         /* UNIVERSAL SLIDER STYLES */
         .section-label { padding: 25px 6% 15px; background: var(--bg-light); font-size: 13px; font-weight: 800; text-transform: uppercase; color: var(--slate-gray); letter-spacing: 1.5px; display: flex; align-items: center; gap: 10px; }
@@ -53,18 +62,13 @@
 
         .custom-slider-container { width: 100%; height: 250px; position: relative; background: #eee; overflow: hidden; }
         .slides-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; height: 100%; scrollbar-width: none; scroll-behavior: smooth; }
-        .slides-scroll::-webkit-scrollbar { display: none; }
         .slide-item { min-width: 100%; height: 100%; scroll-snap-align: start; flex-shrink: 0; }
         .slide-item img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; }
         
-        .slider-dots { position: absolute; bottom: 15px; width: 100%; display: flex; justify-content: center; gap: 6px; pointer-events: none; }
-        .s-dot { width: 6px; height: 6px; background: rgba(255,255,255,0.4); border-radius: 50%; transition: 0.3s; }
-        .s-dot.active { background: white; transform: scale(1.3); width: 15px; border-radius: 10px; }
-
-        /* PROMO TAG - SEKARANG DI BAWAH GAMBAR */
+        /* PROMO BADGE - DIPINDAH KE BAWAH GAMBAR */
         .promo-badge {
             position: absolute;
-            bottom: 12px; /* Dipindah ke bawah area gallery */
+            bottom: 12px;
             left: 12px;
             background: linear-gradient(45deg, var(--yamaha-red), #ff4d4d);
             color: white;
@@ -76,8 +80,7 @@
             text-transform: uppercase;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             display: flex;
-            align-items: center;
-            gap: 5px;
+            align-items: center; gap: 5px;
         }
 
         /* CONTROLS & GRID */
@@ -89,6 +92,43 @@
         .tab-btn { padding: 10px 24px; border: 1px solid #e2e8f0; background: var(--white); border-radius: 8px; font-size: 12px; font-weight: 700; color: var(--slate-gray); white-space: nowrap; cursor: pointer; }
         .tab-btn.active { background: var(--yamaha-blue); color: var(--white); border-color: var(--yamaha-blue); }
 
+/* 3 PILAR KEPERCAYAAN - VERSI RAPI */
+.trust-icons { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 10px; 
+    padding: 25px 4%; /* Padding samping diperkecil agar ruang lebih luas */
+    background: var(--dark-steel);
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.trust-item { 
+    text-align: center; 
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Memastikan ikon & teks sejajar di tengah */
+    justify-content: center;
+}
+
+.trust-item i { 
+    font-size: 24px; /* Sedikit diperbesar agar ikon menonjol */
+    color: #fff; 
+    margin-bottom: 10px; 
+    height: 30px; /* Memberi tinggi tetap agar teks di bawahnya sejajar horizontal */
+    display: flex;
+    align-items: center;
+}
+
+.trust-item span { 
+    font-size: 9px; /* Ukuran teks dioptimalkan untuk mobile */
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 0.8px; 
+    line-height: 1.3;
+    color: #cbd5e1; /* Warna abu-abu terang agar lebih elegan */
+}
+
         .grid { display: grid; grid-template-columns: 1fr; gap: 30px; padding: 15px 6% 50px; }
         .card { background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; transition: 0.3s; position: relative; }
         .gallery { position: relative; height: 260px; background: #fff; }
@@ -99,25 +139,18 @@
 
         .card-info { padding: 24px; }
         .motor-name { font-size: 20px; font-weight: 800; color: var(--dark-steel); margin-bottom: 4px; }
-        .new-price { font-size: 18px; font-weight: 600; color: var(--yamaha-red); display: block; margin-bottom: 15px; }
+        .new-price { font-size: 18px; font-weight: 600; color: var(--yamaha-red); display: block; margin-bottom: 12px; }
 
         details { background: #f1f5f9; border-radius: 10px; margin-bottom: 15px; overflow: hidden; border: 1px solid #e2e8f0; }
         summary { padding: 12px 15px; font-size: 12px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--dark-steel); }
-        summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 10px; transition: 0.3s; }
-        details[open] summary::after { transform: rotate(180deg); }
+        summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 10px; }
         .spec-container { padding: 0 15px 15px; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid #e2e8f0; padding-top: 10px; }
-        .spec-item { display: grid; grid-template-columns: 80px 10px 1fr; font-size: 11px; line-height: 1.4; color: var(--slate-gray); }
-        .spec-label { font-weight: 700; color: var(--dark-steel); }
+        .spec-item { display: grid; grid-template-columns: 80px 10px 1fr; font-size: 11px; color: var(--slate-gray); }
 
         .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #128c7e; color: #fff; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: 700; }
 
         footer { background: var(--white); padding: 50px 6% 30px; border-top: 1px solid #e2e8f0; text-align: center; }
-        .social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
-        .social-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 18px; }
-        .fb { background: #1877F2; } .ig { background: linear-gradient(45deg, #f09433 0%, #bc1888 100%); }
-
         #zoomModal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; padding: 20px; }
-
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
         @keyframes shine { 0% { background-position: -200%; } 100% { background-position: 200%; } }
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } }
@@ -138,6 +171,9 @@
     <div class="hero">
         <h1>Pusat Motor Yamaha <br><span class="dealer-name-animate">Maju Jaya Abadi Ngawi</span></h1>
         <p>Layanan profesional dengan pilihan unit terlengkap di Ngawi.</p>
+        <div style="margin-top: 15px; font-size: 12px; color: #93c5fd; font-weight: 600;">
+            <i class="far fa-clock"></i> Senin - Sabtu: 09.00 - 18.00 | <span style="color: #ff4d4d;">Minggu: Tutup</span>
+        </div>
     </div>
 
     <div class="trust-icons">
@@ -148,15 +184,9 @@
 
     <div class="section-label">Promo Bulan Ini :</div>
     <div class="custom-slider-container">
-        <div class="slides-scroll" id="promoScroll" onscroll="syncDots('promoScroll', 'promoDots')">
-            <div class="slide-item"><img src="promo1.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+1'"></div>
-            <div class="slide-item"><img src="promo2.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+2'"></div>
-            <div class="slide-item"><img src="promo3.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+3'"></div>
-            <div class="slide-item"><img src="promo4.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+4'"></div>
-            <div class="slide-item"><img src="promo5.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+5'"></div>
-        </div>
-        <div class="slider-dots" id="promoDots">
-            <div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div>
+        <div class="slides-scroll" id="promoScroll">
+            <div class="slide-item"><img src="promo1.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+1'"></div>
+            <div class="slide-item"><img src="promo2.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+2'"></div>
         </div>
     </div>
 
@@ -168,8 +198,8 @@
             </div>
         </div>
         <div class="tabs">
-            <button class="tab-btn active" id="tab-promo" onclick="doFilter('promo', this)">🔥 Promo Spesial</button>
-            <button class="tab-btn" onclick="doFilter('maxi', this)">MAXi Yamaha</button>
+            <button class="tab-btn active" onclick="doFilter('promo', this)">🔥 Promo</button>
+            <button class="tab-btn" onclick="doFilter('maxi', this)">MAXi</button>
             <button class="tab-btn" onclick="doFilter('classy', this)">Classy</button>
             <button class="tab-btn" onclick="doFilter('matic', this)">Matic</button>
             <button class="tab-btn" onclick="doFilter('sport', this)">Sport</button>
@@ -180,30 +210,7 @@
     <div id="loading" style="text-align: center; padding: 50px;"><i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--yamaha-blue);"></i></div>
     <div class="grid" id="mainContainer"></div>
 
-    <div class="section-label">Tentang Kami :</div>
-    <div class="custom-slider-container">
-        <div class="slides-scroll" id="aboutScroll" onscroll="syncDots('aboutScroll', 'aboutDots')">
-            <div class="slide-item"><img src="foto1.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+1'"></div>
-            <div class="slide-item"><img src="foto2.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'"></div>
-            <div class="slide-item"><img src="foto3.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+3'"></div>
-            <div class="slide-item"><img src="foto4.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+4'"></div>
-            <div class="slide-item"><img src="foto5.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+5'"></div>
-        </div>
-        <div class="slider-dots" id="aboutDots">
-            <div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div>
-        </div>
-    </div>
-
-    <div class="section-label">Lokasi Dealer :</div>
-    <div style="margin: 0 6% 40px; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0;">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15818.007621379435!2d111.4429!3d-7.4045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMjQnMTYuMiJTIDExMcKwMjYnMzQuNCJF!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-
     <footer>
-        <div class="social-links">
-            <a href="https://facebook.com/PENGGUNA" target="_blank" class="social-icon fb"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://instagram.com/PENGGUNA" target="_blank" class="social-icon ig"><i class="fab fa-instagram"></i></a>
-        </div>
         <div style="font-weight: 800; color: var(--dark-steel); text-transform: uppercase; font-size: 13px;">Yamaha Maju Jaya Abadi Ngawi</div>
         <div style="font-size: 11px; color: var(--slate-gray); margin-top: 5px;">Melayani Cash, Kredit, dan Service Resmi.</div>
     </footer>
@@ -215,30 +222,12 @@
 
         function updateRealTimeInfo() {
             const now = new Date();
+            const isOpen = (now.getDay() >= 1 && now.getDay() <= 6) && (now.getHours() >= 9 && now.getHours() < 18);
             document.getElementById('top-date').innerText = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
             document.getElementById('top-clock').innerText = now.toLocaleTimeString('id-ID', { hour12: false });
-            const badge = document.getElementById('top-status-badge');
-            const isOpen = (now.getDay() >= 1 && now.getDay() <= 6) && (now.getHours() >= 8 && now.getHours() < 20);
-            badge.innerHTML = isOpen ? `<span class="dot-status dot-open"></span> <span style="font-size:10px;text-transform:uppercase;">Buka</span>` : `<span class="dot-status dot-closed"></span> <span style="font-size:10px;text-transform:uppercase;">Tutup</span>`;
+            document.getElementById('top-status-badge').innerHTML = isOpen ? `<span class="dot-status dot-open"></span> BUKA` : `<span class="dot-status dot-closed"></span> TUTUP`;
         }
         setInterval(updateRealTimeInfo, 1000); updateRealTimeInfo();
-
-        function syncDots(scrollId, dotsId) {
-            const scroll = document.getElementById(scrollId);
-            const dots = document.getElementById(dotsId).children;
-            const idx = Math.round(scroll.scrollLeft / scroll.offsetWidth);
-            for(let i=0; i<dots.length; i++) dots[i].classList.toggle('active', i === idx);
-        }
-
-        function autoSlide(scrollId) {
-            const scroll = document.getElementById(scrollId);
-            if(!scroll) return;
-            let idx = Math.round(scroll.scrollLeft / scroll.offsetWidth);
-            idx = (idx + 1) % 5;
-            scroll.scrollTo({ left: idx * scroll.offsetWidth, behavior: 'smooth' });
-        }
-        setInterval(() => autoSlide('promoScroll'), 5000);
-        setInterval(() => autoSlide('aboutScroll'), 7000);
 
         let rawData = [];
         async function fetchMaster() {
@@ -261,19 +250,27 @@
 
             data.forEach((m, idx) => {
                 const imgs = [m.img, m.img1, m.img2, m.img3, m.img4, m.img5].filter(p => p && p.trim() !== "");
-                const promoTag = (m.promo && m.promo.trim() !== "") 
-                    ? `<div class="promo-badge"><i class="fas fa-fire"></i> ${m.promo}</div>` 
-                    : "";
+                
+                // LOGIKA STOK
+                let stokHTML = '';
+                const statusStok = m.stock?.toLowerCase().trim();
+                if(statusStok === 'ready') stokHTML = '<div class="stok-badge stok-ready"><i class="fas fa-check-circle"></i> Unit Ready Stock</div>';
+                else if(statusStok === 'inden') stokHTML = '<div class="stok-badge stok-inden"><i class="fas fa-clock"></i> Unit Inden / Pesan</div>';
+                else if(statusStok === 'kosong') stokHTML = '<div class="stok-badge stok-kosong"><i class="fas fa-times-circle"></i> Stok Habis</div>';
+
+                const promoTag = (m.promo && m.promo.trim() !== "") ? `<div class="promo-badge"><i class="fas fa-fire"></i> ${m.promo}</div>` : "";
 
                 container.innerHTML += `
                 <div class="card">
                     <div class="gallery">
-                        ${promoTag} <div class="img-counter" id="counter-${idx}">1 / ${imgs.length}</div>
+                        ${promoTag}
+                        <div class="img-counter" id="counter-${idx}">1 / ${imgs.length}</div>
                         <div class="gallery-scroll" onscroll="const p=Math.round(this.scrollLeft/this.offsetWidth)+1; document.getElementById('counter-${idx}').innerText=p+' / ${imgs.length}'">
                             ${imgs.map(p => `<div class="slide"><img src="${p}" onclick="openZoom(this.src)"></div>`).join('')}
                         </div>
                     </div>
                     <div class="card-info">
+                        ${stokHTML}
                         <h3 class="motor-name">${m.nama}</h3>
                         <span class="new-price">${m.harga ? "Rp " + parseInt(m.harga.replace(/[^0-9]/g, "")).toLocaleString('id-ID') : '-'}</span>
                         
@@ -282,12 +279,10 @@
                             <div class="spec-container">
                                 <div class="spec-item"><span class="spec-label">Mesin</span><span>:</span><span>${m.mesin || '-'}</span></div>
                                 <div class="spec-item"><span class="spec-label">Rangka</span><span>:</span><span>${m.rangka || '-'}</span></div>
-                                <div class="spec-item"><span class="spec-label">Dimensi</span><span>:</span><span>${m.dimensi || '-'}</span></div>
-                                <div class="spec-item"><span class="spec-label">Kelistrikan</span><span>:</span><span>${m.kelistrikan || '-'}</span></div>
                             </div>
                         </details>
 
-                        <a href="https://wa.me/${CONFIG.WA_PHONE}?text=Halo, saya ingin tanya unit ${m.nama} ${m.promo ? '- Promo: ' + m.promo : ''}" class="wa-btn"><i class="fab fa-whatsapp"></i> TANYA SALES</a>
+                        <a href="https://wa.me/${CONFIG.WA_PHONE}?text=Halo, unit ${m.nama} apakah ${m.stock}?" class="wa-btn"><i class="fab fa-whatsapp"></i> TANYA SALES</a>
                     </div>
                 </div>`;
             });

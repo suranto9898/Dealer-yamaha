@@ -3,141 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Yamaha Maju Jaya Abadi | Katalog Promo Ngawi</title>
+    <title>Yamaha Maju Jaya Abadi | Official Katalog Ngawi</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
             --yamaha-blue: #003399;
-            --yamaha-red: #ED1C24;
-            --dark: #1e293b;
-            --gray: #64748b;
-            --light: #f1f5f9;
+            --yamaha-red: #cc0000;
+            --dark-steel: #0f172a;
+            --slate-gray: #64748b;
+            --bg-light: #f8fafc;
             --white: #ffffff;
-            --open-green: #22c55e;
-            --promo-blue: #e0f2fe;
-            --promo-text: #0369a1;
+            --status-ok: #00ff88;
+            --ready-bg: #ecfdf5; --ready-text: #065f46;
+            --inden-bg: #fffbeb; --inden-text: #92400e;
+            --kosong-bg: #fef2f2; --kosong-text: #991b1b;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--light); color: var(--dark); overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg-light); color: var(--dark-steel); line-height: 1.6; overflow-x: hidden; }
 
-        /* JAM & TANGGAL PALING ATAS */
-        .top-info-bar { 
-            background: #000; color: white; padding: 8px 5%; display: flex; 
-            justify-content: space-between; align-items: center; font-size: 10px; 
-            font-weight: 600; position: sticky; top: 0; z-index: 1100;
-        }
-        .live-date-time { display: flex; gap: 10px; align-items: center; }
-        .store-status-top { display: flex; align-items: center; gap: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .dot-status { width: 7px; height: 7px; border-radius: 50%; animation: blink 1s infinite; }
-        .dot-open { background: var(--open-green); box-shadow: 0 0 8px var(--open-green); }
-        .dot-closed { background: var(--yamaha-red); }
+        /* TOP INFO BAR */
+        .top-info-bar { background: #000; color: white; padding: 10px 6%; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 500; position: sticky; top: 0; z-index: 1100; }
+        .dot-status { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+        .dot-open { background: var(--status-ok); box-shadow: 0 0 10px var(--status-ok); animation: blink 1.5s infinite; }
+        .dot-closed { background: #64748b; }
 
         /* NAVBAR */
-        .navbar { display: flex; flex-direction: column; align-items: center; padding: 10px 6%; background: var(--white); position: sticky; top: 31px; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
-        .logo-img { height: 40px; margin-bottom: 5px; object-fit: contain; }
-        .brand-name { font-size: 13px; font-weight: 800; color: var(--yamaha-blue); text-transform: uppercase; letter-spacing: 1px; }
+        .navbar { background: var(--white); padding: 15px 6%; display: flex; flex-direction: column; align-items: center; border-bottom: 1px solid #e2e8f0; position: sticky; top: 35px; z-index: 1000; }
+        .logo-img { height: 35px; margin-bottom: 5px; object-fit: contain; }
+        .brand-name { font-size: 14px; font-weight: 800; color: var(--yamaha-blue); text-transform: uppercase; letter-spacing: 2px; }
 
-        /* HERO & NARASI */
-        .hero { background: linear-gradient(135deg, var(--yamaha-blue) 0%, #001a4d 100%); color: var(--white); padding: 35px 8% 25px; text-align: center; }
-        .hero h1 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+        /* HERO */
+        .hero { background: var(--dark-steel); color: var(--white); padding: 50px 8% 30px; text-align: center; }
+        .hero h1 { font-size: 26px; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
         .dealer-name-animate { display: inline-block; background: linear-gradient(90deg, #fff, #93c5fd, #fff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; }
-        .hero p { font-size: 12px; line-height: 1.6; opacity: 0.9; margin-bottom: 15px; }
+        .hero p { font-size: 13px; opacity: 0.75; max-width: 480px; margin: 0 auto; font-weight: 300; }
 
-        /* SLIDER DEALER */
-        .dealer-slider { width: 100%; height: 230px; position: relative; overflow: hidden; background: #ddd; cursor: zoom-in; }
-        .dealer-slides { display: flex; transition: transform 0.6s ease-in-out; height: 100%; }
+        /* 3 PILAR KEPERCAYAAN (IKON) */
+        .trust-icons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 20px 6%; background: var(--dark-steel); }
+        .trust-item { text-align: center; color: white; }
+        .trust-item i { font-size: 20px; color: #fff; margin-bottom: 8px; display: block; }
+        .trust-item span { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; display: block; line-height: 1.2; }
+
+        .dealer-slider { width: 100%; height: 250px; position: relative; overflow: hidden; background: #ddd; }
+        .dealer-slides { display: flex; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); height: 100%; }
         .dealer-slides img { min-width: 100%; object-fit: cover; }
 
-        /* CONTROLS STICKY */
-        .controls { position: sticky; top: 110px; z-index: 990; background: var(--light); padding: 15px 0 10px; }
-        .search-box { padding: 0 6% 12px; }
-        .search-inner { background: var(--white); border-radius: 12px; display: flex; align-items: center; padding: 0 15px; border: 1px solid #e2e8f0; }
-        .search-inner input { width: 100%; border: none; padding: 12px; outline: none; font-size: 14px; }
-        .tabs { display: flex; gap: 8px; overflow-x: auto; padding: 0 6% 15px; scrollbar-width: none; }
-        .tab-btn { padding: 10px 20px; border: 1.5px solid #e2e8f0; background: var(--white); border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--gray); white-space: nowrap; }
+        /* CONTROLS */
+        .controls { position: sticky; top: 120px; z-index: 990; background: var(--bg-light); padding: 20px 0 10px; }
+        .search-box { padding: 0 6% 15px; }
+        .search-inner { background: var(--white); border-radius: 12px; display: flex; align-items: center; padding: 0 18px; border: 1px solid #e2e8f0; }
+        .search-inner input { width: 100%; border: none; padding: 14px 10px; outline: none; font-size: 14px; }
+        
+        .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 0 6% 15px; scrollbar-width: none; }
+        .tab-btn { padding: 10px 24px; border: 1px solid #e2e8f0; background: var(--white); border-radius: 8px; font-size: 12px; font-weight: 700; color: var(--slate-gray); white-space: nowrap; cursor: pointer; }
         .tab-btn.active { background: var(--yamaha-blue); color: var(--white); border-color: var(--yamaha-blue); }
 
-        /* KARTU UNIT */
-        .grid { display: grid; grid-template-columns: 1fr; gap: 25px; padding: 25px 6% 40px; }
-        .card { background: var(--white); border-radius: 24px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.04); position: relative; }
-        .promo-badge { position: absolute; top: 15px; right: 15px; background: var(--yamaha-red); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 50; border: 2px solid #fff; animation: pulse 2s infinite; }
+        /* PRODUCT GRID */
+        .grid { display: grid; grid-template-columns: 1fr; gap: 30px; padding: 15px 6% 50px; }
+        .card { background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; transition: 0.3s; position: relative; }
+        .gallery { position: relative; height: 260px; background: #fff; border-bottom: 1px solid #f1f5f9; }
+        .gallery-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; height: 100%; scrollbar-width: none; }
+        .slide { min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 20px; scroll-snap-align: start; }
+        .slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .img-counter { position: absolute; bottom: 15px; right: 15px; background: rgba(15,23,42,0.8); color: white; padding: 4px 10px; border-radius: 6px; font-size: 10px; font-weight: 600; }
 
-        /* GALLERY & DETAILS */
-        .gallery { position: relative; background: #fff; overflow: hidden; }
-        .gallery-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
-        .slide { min-width: 100%; height: 230px; scroll-snap-align: start; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .slide img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; }
-        .img-counter { position: absolute; bottom: 15px; right: 15px; background: rgba(0,0,0,0.6); color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; z-index: 10; }
-        .card-info { padding: 20px; }
-        .motor-name { font-size: 18px; font-weight: 800; margin-bottom: 5px; }
-        .new-price { font-size: 19px; font-weight: 800; color: var(--yamaha-red); }
+        .card-info { padding: 24px; }
+        .stock-label { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid transparent; }
+        .stock-label.ready { background: var(--ready-bg); color: var(--ready-text); border-color: #bbf7d0; }
+        .stock-label.inden { background: var(--inden-bg); color: var(--inden-text); border-color: #fef08a; }
+        .stock-label.kosong { background: var(--kosong-bg); color: var(--kosong-text); border-color: #fecaca; }
 
-        .promo-desc-box { background: var(--promo-blue); color: var(--promo-text); padding: 10px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; margin: 10px 0; border: 1px dashed var(--promo-text); display: flex; align-items: center; gap: 8px; }
+        .motor-name { font-size: 20px; font-weight: 800; color: var(--dark-steel); margin-bottom: 4px; }
+        .new-price { font-size: 18px; font-weight: 600; color: var(--yamaha-red); display: block; margin-bottom: 15px; }
+        .promo-desc-box { background: #f0f9ff; border-left: 4px solid var(--yamaha-blue); padding: 12px 15px; border-radius: 4px; font-size: 12px; color: #0369a1; margin-bottom: 20px; font-weight: 500; }
 
-        /* SPESIFIKASI RAPI */
-        details { background: #f8fafc; border-radius: 15px; border: 1px solid #eef2f6; margin-bottom: 15px; }
-        summary { padding: 12px 15px; font-size: 12px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-        summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 10px; }
-        details[open] summary::after { transform: rotate(180deg); }
-        .spec-container { padding: 0 15px 15px; display: flex; flex-direction: column; gap: 8px; }
-        .spec-item { display: grid; grid-template-columns: 85px 10px 1fr; font-size: 11px; }
-        .spec-label { font-weight: 700; color: var(--gray); }
+        details { border: 1px solid #f1f5f9; border-radius: 8px; margin-bottom: 20px; }
+        summary { padding: 12px 15px; font-size: 12px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; color: var(--slate-gray); }
+        .spec-container { padding: 10px 15px 15px; font-size: 11px; }
+        .spec-item { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #f8fafc; }
 
-        .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25D366; color: #fff; padding: 16px; border-radius: 18px; text-decoration: none; font-weight: 800; font-size: 14px; }
+        .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #128c7e; color: #fff; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 14px; }
 
-        /* MAPS (YANG TADI HILANG) */
-        .maps-section { padding: 0 6% 30px; }
-        .maps-card { background: var(--white); border-radius: 24px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.04); }
-        .maps-header { padding: 15px 20px; font-size: 13px; font-weight: 800; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: 10px; }
-        .maps-container iframe { width: 100%; height: 250px; border: none; display: block; }
+        /* MAPS */
+        .maps-header { padding: 0 6% 15px; font-size: 14px; font-weight: 800; text-transform: uppercase; color: var(--slate-gray); letter-spacing: 1px; }
+        .maps-card { margin: 0 6% 40px; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; }
+        .maps-card iframe { width: 100%; height: 250px; border: none; display: block; }
 
         /* FOOTER */
-        .main-footer { background: var(--white); padding: 40px 6% 20px; border-top: 1px solid #e2e8f0; text-align: center; }
-        .visitor-box { background: #f8fafc; padding: 8px 20px; border-radius: 50px; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; border: 1px solid #e2e8f0; font-size: 11px; font-weight: 600; color: var(--gray); }
-        .social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
-        .social-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; text-decoration: none; }
-        .fb { background: #1877F2; } .ig { background: linear-gradient(45deg, #f09433 0%, #bc1888 100%); }
-        .footer-desc { font-size: 11px; color: var(--gray); line-height: 1.6; margin-bottom: 20px; max-width: 450px; margin: 0 auto 20px; }
+        footer { background: var(--white); padding: 50px 6% 30px; border-top: 1px solid #e2e8f0; text-align: center; }
+        .visitor-box { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: var(--bg-light); border-radius: 30px; font-size: 11px; font-weight: 700; color: var(--slate-gray); margin-bottom: 20px; }
+        .footer-brand { font-weight: 800; color: var(--dark-steel); text-transform: uppercase; font-size: 13px; }
+        .footer-tagline { font-size: 11px; color: var(--slate-gray); margin-top: 5px; }
 
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
         @keyframes shine { 0% { background-position: -200%; } 100% { background-position: 200%; } }
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } }
         #zoomModal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
-        #zoomImg { max-width: 95%; max-height: 85%; object-fit: contain; }
     </style>
 </head>
 <body>
 
     <div class="top-info-bar">
-        <div class="live-date-time">
-            <span id="top-date">Memuat...</span>
-            <span id="top-clock" style="color: #fbbf24;">00:00:00</span>
-        </div>
-        <div id="top-status-badge" class="store-status-top"></div>
+        <div class="live-date-time"><span id="top-date"></span> | <span id="top-clock" style="color: #fbbf24;"></span></div>
+        <div id="top-status-badge"></div>
     </div>
 
     <nav class="navbar">
-        <img src="logo.jpg" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/200x50?text=YAMAHA'">
+        <img src="logo.jpg" class="logo-img" onerror="this.src='https://via.placeholder.com/150x40?text=YAMAHA'">
         <div class="brand-name">Maju Jaya Abadi</div>
     </nav>
 
     <div class="hero">
-        <h1>Selamat Datang di <br><span class="dealer-name-animate">Maju Jaya Abadi</span></h1>
-        <p>Dealer Yamaha terpercaya sejak 2015 memberikan pelayanan terbaik bagi masyarakat di kota ngawi.</p>
+        <h1>Pusat Motor Yamaha <br><span class="dealer-name-animate">Maju Jaya Abadi Ngawi</span></h1>
+        <p>Hadir dengan layanan profesional dan pilihan unit terlengkap. Temukan promo motor impian Anda dengan proses cepat dan mudah.</p>
     </div>
 
-    <div class="dealer-slider" onclick="openZoomFromSlider()">
+    <div class="trust-icons">
+        <div class="trust-item">
+            <i class="fas fa-certificate"></i>
+            <span>Dealer<br>Resmi</span>
+        </div>
+        <div class="trust-item">
+            <i class="fas fa-tools"></i>
+            <span>Bengkel<br>Resmi</span>
+        </div>
+        <div class="trust-item">
+            <i class="fas fa-percentage"></i>
+            <span>DP & Angsuran<br>Termurah</span>
+        </div>
+    </div>
+
+    <div class="dealer-slider">
         <div class="dealer-slides" id="localDealerSlides">
-            <img src="foto1.jpg" id="imgDealer1" onerror="this.src='https://via.placeholder.com/800x400?text=Dealer+1'">
-            <img src="foto2.jpg" id="imgDealer2" onerror="this.src='https://via.placeholder.com/800x400?text=Dealer+2'">
-            <img src="foto3.jpg" id="imgDealer3" onerror="this.src='https://via.placeholder.com/800x400?text=Dealer+3'">
-            <img src="foto4.jpg" id="imgDealer4" onerror="this.src='https://via.placeholder.com/800x400?text=Dealer+4'">
-            <img src="foto5.jpg" id="imgDealer5" onerror="this.src='https://via.placeholder.com/800x400?text=Dealer+5'">
+            <img src="foto1.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+1'">
+            <img src="foto2.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'">
+            <img src="foto3.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+3'">
         </div>
     </div>
 
@@ -145,12 +149,12 @@
         <div class="search-box">
             <div class="search-inner">
                 <i class="fas fa-search" style="color:#cbd5e1;"></i>
-                <input type="text" id="mainSearch" placeholder="Cari unit..." onkeyup="doSearch()">
+                <input type="text" id="mainSearch" placeholder="Cari tipe motor..." onkeyup="doSearch()">
             </div>
         </div>
         <div class="tabs">
-            <button class="tab-btn active" id="tab-promo" onclick="doFilter('promo', this)">🔥 Promo Saat Ini</button>
-            <button class="tab-btn" onclick="doFilter('maxi', this)">MAXi</button>
+            <button class="tab-btn active" id="tab-promo" onclick="doFilter('promo', this)">🔥 Promo Spesial</button>
+            <button class="tab-btn" onclick="doFilter('maxi', this)">MAXi Yamaha</button>
             <button class="tab-btn" onclick="doFilter('classy', this)">Classy</button>
             <button class="tab-btn" onclick="doFilter('matic', this)">Matic</button>
             <button class="tab-btn" onclick="doFilter('sport', this)">Sport</button>
@@ -158,63 +162,43 @@
         </div>
     </div>
 
-    <div id="loading" style="text-align: center; padding: 40px;"><i class="fas fa-spinner fa-spin fa-2x"></i></div>
+    <div id="loading" style="text-align: center; padding: 50px;"><i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--yamaha-blue);"></i></div>
     <div class="grid" id="mainContainer"></div>
 
-    <div class="maps-section">
-        <div class="maps-card">
-            <div class="maps-header"><i class="fas fa-map-marker-alt" style="color: var(--yamaha-red);"></i> Lokasi Dealer Kami</div>
-            <div class="maps-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.534888052538!2d111.442!3d-7.404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79eb0000000001%3A0x0!2zN8KwMjQnMTQuNCJTIDExMcKwMjYnMzEuMiJF!5e0!3m2!1sid!2sid!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+    <div class="maps-header">Lokasi Dealer Kami</div>
+    <div class="maps-card">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126584.28822695572!2d111.35515234563812!3d-7.403248356158586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79eb952077e627%3A0x3027a7635293320!2sNgawi%2C%20Ngawi%20Regency%2C%20East%20Java!5e0!3m2!1sen!2sid!4v17000000000000" allowfullscreen="" loading="lazy"></iframe>
     </div>
 
-    <footer class="main-footer">
-        <div class="visitor-box">
-            <i class="fas fa-users"></i> Pengunjung: <span id="v-count">0</span>
-        </div>
-        <div class="social-links">
-            <a href="https://facebook.com/username" target="_blank" class="social-icon fb"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://instagram.com/username" target="_blank" class="social-icon ig"><i class="fab fa-instagram"></i></a>
-        </div>
-        <div class="footer-desc">
-            <strong>Yamaha Maju Jaya Abadi Ngawi</strong><br>
-            Dealer Resmi Yamaha di Ngawi. Kami melayani penjualan unit cash/kredit serta layanan bengkel resmi.
-        </div>
-        <div style="font-size: 10px; color: #94a3b8;">&copy; 2026 Maju Jaya Abadi Ngawi.</div>
+    <footer>
+        <div class="visitor-box"><i class="fas fa-eye"></i> <span id="v-count">0</span> Pengunjung</div>
+        <div class="footer-brand">Yamaha Maju Jaya Abadi Ngawi</div>
+        <div class="footer-tagline">Melayani sepenuh hati untuk penjualan Cash, Kredit, dan Service Resmi.</div>
     </footer>
 
-    <div id="zoomModal" onclick="this.style.display='none'"><img id="zoomImg"></div>
+    <div id="zoomModal" onclick="this.style.display='none'"><img id="zoomImg" style="max-width:90%; border-radius:8px;"></div>
 
     <script>
-        const CONFIG = {
-            API_URL: "https://sheetdb.io/api/v1/qjjio707oz536",
-            WA_PHONE: "6285725493220"
-        };
-
-        const formatIDR = (n) => n && !isNaN(n.toString().replace(/[^0-9]/g, "")) ? "Rp " + parseInt(n.toString().replace(/[^0-9]/g, "")).toLocaleString('id-ID') : n;
+        const CONFIG = { API_URL: "https://sheetdb.io/api/v1/qjjio707oz536", WA_PHONE: "6285725493220" };
 
         function updateRealTimeInfo() {
             const now = new Date();
-            document.getElementById('top-date').innerText = now.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' });
+            document.getElementById('top-date').innerText = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
             document.getElementById('top-clock').innerText = now.toLocaleTimeString('id-ID', { hour12: false });
             const badge = document.getElementById('top-status-badge');
-            const isOpen = (now.getDay() >= 1 && now.getDay() <= 6) && (now.getHours() >= 9 && now.getHours() < 21);
-            badge.innerHTML = isOpen ? `<span class="dot-status dot-open"></span> Buka` : `<span class="dot-status dot-closed"></span> Tutup`;
+            const isOpen = (now.getDay() >= 1 && now.getDay() <= 6) && (now.getHours() >= 8 && now.getHours() < 20);
+            badge.innerHTML = isOpen ? 
+                `<span class="dot-status dot-open"></span> <span style="font-weight:700;font-size:10px;text-transform:uppercase;">Buka Sekarang</span>` : 
+                `<span class="dot-status dot-closed"></span> <span style="font-weight:700;font-size:10px;text-transform:uppercase;">Tutup Sementara</span>`;
         }
         setInterval(updateRealTimeInfo, 1000); updateRealTimeInfo();
 
-        let currentLocalSlide = 0;
+        let currentSlide = 0;
         setInterval(() => {
             const slides = document.getElementById('localDealerSlides');
-            currentLocalSlide = (currentLocalSlide + 1) % 5;
-            if(slides) slides.style.transform = `translateX(-${currentLocalSlide * 100}%)`;
-        }, 4000);
-
-        function openZoomFromSlider() {
-            openZoom(document.getElementById(`imgDealer${currentLocalSlide + 1}`).src);
-        }
+            currentSlide = (currentSlide + 1) % 3;
+            if(slides) slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }, 5000);
 
         let v = localStorage.getItem('visit_count') || 1240;
         v = parseInt(v) + 1; localStorage.setItem('visit_count', v);
@@ -234,38 +218,43 @@
             const container = document.getElementById('mainContainer');
             container.innerHTML = "";
             const data = rawData.filter(m => {
-                const sMatch = m.nama?.toLowerCase().includes(query.toLowerCase());
-                if (query !== "") return sMatch;
+                if (query !== "") return m.nama?.toLowerCase().includes(query.toLowerCase());
                 if (filter === 'promo') return m.promo && m.promo.trim() !== "";
                 return m.cat?.toLowerCase().includes(filter.toLowerCase());
             });
 
             data.forEach((m, idx) => {
-                const hasPromo = m.promo && m.promo.trim() !== "";
                 const imgs = [m.img, m.img1, m.img2, m.img3, m.img4, m.img5].filter(p => p && p.trim() !== "");
+                const sText = m.stock ? m.stock.toLowerCase() : "";
+                let stockClass = ""; let stockIcon = "fa-box";
+                if(sText.includes("ready")) { stockClass = "ready"; stockIcon = "fa-check-circle"; }
+                else if(sText.includes("inden") || sText.includes("indent")) { stockClass = "inden"; stockIcon = "fa-clock"; }
+                else if(sText.includes("kosong") || sText.includes("habis")) { stockClass = "kosong"; stockIcon = "fa-times-circle"; }
+
                 container.innerHTML += `
                 <div class="card">
-                    ${hasPromo ? `<div class="promo-badge"><i class="fas fa-tags"></i></div>` : ''}
                     <div class="gallery">
-                        <div class="img-counter" id="counter-${idx}">1/${imgs.length}</div>
-                        <div class="gallery-scroll" onscroll="const p=Math.round(this.scrollLeft/this.offsetWidth)+1; document.getElementById('counter-${idx}').innerText=p+'/${imgs.length}'">
+                        <div class="img-counter" id="counter-${idx}">1 / ${imgs.length}</div>
+                        <div class="gallery-scroll" onscroll="const p=Math.round(this.scrollLeft/this.offsetWidth)+1; document.getElementById('counter-${idx}').innerText=p+' / ${imgs.length}'">
                             ${imgs.map(p => `<div class="slide"><img src="${p}" onclick="openZoom(this.src)"></div>`).join('')}
                         </div>
                     </div>
                     <div class="card-info">
+                        ${m.stock ? `<div class="stock-label ${stockClass}"><i class="fas ${stockIcon}"></i> ${m.stock}</div>` : ''}
                         <h3 class="motor-name">${m.nama}</h3>
-                        <p class="new-price">${formatIDR(m.harga)}</p>
-                        ${hasPromo ? `<div class="promo-desc-box"><i class="fas fa-info-circle"></i><span>${m.promo}</span></div>` : ''}
-                        <details>
-                            <summary>Spesifikasi Produk</summary>
+                        <span class="new-price">${m.harga ? "Rp " + parseInt(m.harga.replace(/[^0-9]/g, "")).toLocaleString('id-ID') : '-'}</span>
+                        ${m.promo ? `<div class="promo-desc-box"><i class="fas fa-gift"></i> ${m.promo}</div>` : ''}
+                        <details><summary>Spesifikasi Teknis</summary>
                             <div class="spec-container">
-                                <div class="spec-item"><span class="spec-label">Mesin</span><span>:</span><span>${m.mesin || '-'}</span></div>
-                                <div class="spec-item"><span class="spec-label">Rangka</span><span>:</span><span>${m.rangka || '-'}</span></div>
-                                <div class="spec-item"><span class="spec-label">Dimensi</span><span>:</span><span>${m.dimensi || '-'}</span></div>
-                                <div class="spec-item"><span class="spec-label">Kelistrikan</span><span>:</span><span>${m.kelistrikan || '-'}</span></div>
+                                <div class="spec-item"><span>Tipe Mesin</span><span>${m.mesin || '-'}</span></div>
+                                <div class="spec-item"><span>Rangka</span><span>${m.rangka || '-'}</span></div>
+                                <div class="spec-item"><span>Dimensi</span><span>${m.dimensi || '-'}</span></div>
+                                <div class="spec-item"><span>Kelistrikan</span><span>${m.kelistrikan || '-'}</span></div>
                             </div>
                         </details>
-                        <a href="https://wa.me/${CONFIG.WA_PHONE}?text=Halo, tanya promo ${m.nama}" class="wa-btn"><i class="fab fa-whatsapp"></i> HUBUNGI KAMI</a>
+                        <a href="https://wa.me/${CONFIG.WA_PHONE}?text=Halo Yamaha MJA Ngawi, tanya unit ${m.nama}" class="wa-btn">
+                            <i class="fab fa-whatsapp"></i> HUBUNGI SALES
+                        </a>
                     </div>
                 </div>`;
             });

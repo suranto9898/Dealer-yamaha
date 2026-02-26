@@ -12,100 +12,117 @@
         :root {
             --yamaha-blue: #003399;
             --yamaha-red: #ED1C24;
-            --promo-orange: #ff4d00;
             --dark: #1e293b;
             --gray: #64748b;
             --light: #f1f5f9;
             --white: #ffffff;
+            --open-green: #22c55e;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--light); color: var(--dark); overflow-x: hidden; }
 
-        /* Animasi Bergerak */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes shine { 0% { background-position: -200%; } 100% { background-position: 200%; } }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
-
-        /* Header & Logo */
-        .navbar { display: flex; flex-direction: column; align-items: center; padding: 15px 6%; background: var(--white); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
-        .logo-img { height: 45px; margin-bottom: 5px; object-fit: contain; }
-        .brand-name { font-size: 14px; font-weight: 800; color: var(--yamaha-blue); text-transform: uppercase; letter-spacing: 1px; }
-
-        /* Hero Sambutan */
-        .hero { background: linear-gradient(135deg, var(--yamaha-blue) 0%, #001a4d 100%); color: var(--white); padding: 50px 8% 40px; text-align: center; border-radius: 0 0 40px 40px; box-shadow: 0 10px 20px rgba(0,51,153,0.15); }
-        .hero h1 { font-size: 22px; font-weight: 700; margin-bottom: 12px; animation: fadeInUp 0.8s ease-out forwards; }
-        .dealer-name-animate {
-            display: inline-block;
-            background: linear-gradient(90deg, #fff, #93c5fd, #fff);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 3s linear infinite;
+        /* JAM & TANGGAL PALING ATAS */
+        .top-info-bar { 
+            background: #000; 
+            color: white; 
+            padding: 8px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-size: 10px; 
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 1100;
         }
-        .hero p { font-size: 13px; opacity: 0; line-height: 1.6; max-width: 500px; margin: 0 auto; animation: fadeInUp 0.8s ease-out 0.3s forwards; }
+        .live-date-time { display: flex; gap: 10px; align-items: center; }
+        .store-status-top { display: flex; align-items: center; gap: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .dot-status { width: 7px; height: 7px; border-radius: 50%; animation: blink 1s infinite; }
+        .dot-open { background: var(--open-green); box-shadow: 0 0 8px var(--open-green); }
+        .dot-closed { background: var(--yamaha-red); }
+
+        /* Navbar */
+        .navbar { display: flex; flex-direction: column; align-items: center; padding: 10px 6%; background: var(--white); position: sticky; top: 31px; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+        .logo-img { height: 40px; margin-bottom: 5px; object-fit: contain; }
+        .brand-name { font-size: 13px; font-weight: 800; color: var(--yamaha-blue); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Hero */
+        .hero { background: linear-gradient(135deg, var(--yamaha-blue) 0%, #001a4d 100%); color: var(--white); padding: 35px 8% 25px; text-align: center; }
+        .hero h1 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+        .dealer-name-animate { display: inline-block; background: linear-gradient(90deg, #fff, #93c5fd, #fff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; }
+
+        /* Slider Dealer */
+        .dealer-slider { width: 100%; height: 230px; position: relative; overflow: hidden; background: #ddd; cursor: zoom-in; }
+        .dealer-slides { display: flex; transition: transform 0.6s ease-in-out; height: 100%; }
+        .dealer-slides img { min-width: 100%; object-fit: cover; }
 
         /* Ikon Keunggulan */
-        .features-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 25px 6% 10px; text-align: center; }
-        .feat-item { background: var(--white); padding: 15px 10px; border-radius: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); animation: fadeInUp 0.8s ease-out 0.5s forwards; opacity: 0; }
-        .feat-item i { color: var(--yamaha-red); font-size: 20px; margin-bottom: 8px; display: block; }
-        .feat-item span { font-size: 10px; font-weight: 700; color: var(--dark); line-height: 1.2; display: block; }
+        .features-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 20px 6% 10px; text-align: center; }
+        .feat-item { background: var(--white); padding: 12px 5px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .feat-item i { color: var(--yamaha-red); font-size: 18px; margin-bottom: 5px; display: block; }
+        .feat-item span { font-size: 9px; font-weight: 700; color: var(--dark); text-transform: uppercase; }
 
-        /* Sticky Filter & Search */
-        .controls { position: sticky; top: 75px; z-index: 990; background: var(--light); padding: 15px 0 10px; }
+        /* Controls */
+        .controls { position: sticky; top: 110px; z-index: 990; background: var(--light); padding: 15px 0 10px; }
         .search-box { padding: 0 6% 12px; }
         .search-inner { background: var(--white); border-radius: 12px; display: flex; align-items: center; padding: 0 15px; border: 1px solid #e2e8f0; }
         .search-inner input { width: 100%; border: none; padding: 12px; outline: none; font-size: 14px; }
         
         .tabs { display: flex; gap: 8px; overflow-x: auto; padding: 0 6% 15px; scrollbar-width: none; }
         .tabs::-webkit-scrollbar { display: none; }
-        .tab-btn { padding: 10px 20px; border: 1.5px solid #e2e8f0; background: var(--white); border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--gray); white-space: nowrap; cursor: pointer; transition: 0.3s; }
+        .tab-btn { padding: 10px 20px; border: 1.5px solid #e2e8f0; background: var(--white); border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--gray); white-space: nowrap; cursor: pointer; }
         .tab-btn.active { background: var(--yamaha-blue); color: var(--white); border-color: var(--yamaha-blue); }
-        #tab-promo.active { background: var(--yamaha-red); border-color: var(--yamaha-red); animation: pulse 2s infinite; }
 
-        /* Grid Produk */
+        /* Card Unit */
         .grid { display: grid; grid-template-columns: 1fr; gap: 25px; padding: 10px 6% 60px; }
-        .card { background: var(--white); border-radius: 24px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.04); animation: fadeInUp 0.6s ease-out forwards; opacity: 0; position: relative; }
+        .card { background: var(--white); border-radius: 24px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.04); position: relative; }
+        
+        /* Gallery Unit */
+        .gallery { position: relative; background: #fff; overflow: hidden; }
+        .gallery-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
+        .slide { min-width: 100%; height: 230px; scroll-snap-align: start; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .slide img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; }
+        .img-counter { position: absolute; bottom: 15px; right: 15px; background: rgba(0,0,0,0.6); color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; z-index: 10; }
 
-        /* Promo UI */
-        .promo-ribbon { position: absolute; top: 15px; left: 15px; background: var(--yamaha-red); color: #fff; padding: 4px 12px; border-radius: 8px; font-size: 10px; font-weight: 800; z-index: 10; text-transform: uppercase; }
-        .old-price { font-size: 12px; color: var(--gray); text-decoration: line-through; display: block; }
-        .new-price { font-size: 19px; font-weight: 800; color: var(--yamaha-red); display: block; }
-        .promo-tagline { font-size: 12px; font-weight: 700; color: var(--promo-orange); background: #fff0eb; padding: 4px 10px; border-radius: 6px; display: inline-block; margin-top: 5px; }
-
-        /* Gallery Zoom */
-        .gallery { position: relative; background: #fff; cursor: zoom-in; }
-        .gallery-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-        .gallery-scroll::-webkit-scrollbar { display: none; }
-        .slide { min-width: 100%; height: 230px; scroll-snap-align: start; display: flex; align-items: center; justify-content: center; padding: 25px; }
-        .slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
+        /* Card Details */
         .card-info { padding: 20px; }
-        .motor-cat { font-size: 10px; font-weight: 800; color: var(--yamaha-blue); text-transform: uppercase; margin-bottom: 5px; }
-        .motor-name { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+        .motor-name { font-size: 18px; font-weight: 800; margin-bottom: 5px; }
+        .new-price { font-size: 19px; font-weight: 800; color: var(--yamaha-red); margin-bottom: 15px; }
 
-        /* Spesifikasi Accordion */
-        details { background: #f8fafc; border-radius: 15px; border: 1px solid #f1f5f9; margin-bottom: 20px; transition: 0.3s; }
-        summary { padding: 12px 15px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; outline: none; list-style: none; }
+        /* Perbaikan Spesifikasi Berantakan */
+        details { background: #f8fafc; border-radius: 15px; border: 1px solid #eef2f6; margin-bottom: 15px; overflow: hidden; }
+        summary { padding: 12px 15px; font-size: 12px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
         summary::-webkit-details-marker { display: none; }
-        summary::after { content: '\f078'; font-family: 'Font Awesome 5 Free'; font-weight: 900; font-size: 10px; color: var(--yamaha-blue); transition: 0.3s; }
+        summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 10px; transition: 0.3s; }
         details[open] summary::after { transform: rotate(180deg); }
-        .spec-box { padding: 0 15px 15px; font-size: 11px; color: var(--gray); line-height: 1.8; }
-        .row { display: flex; border-bottom: 1px solid #f1f5f9; padding: 6px 0; }
-        .lbl { width: 95px; font-weight: 700; color: var(--dark); flex-shrink: 0; }
 
-        /* Button Action */
-        .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25D366; color: #fff; padding: 16px; border-radius: 18px; text-decoration: none; font-weight: 800; font-size: 14px; box-shadow: 0 8px 15px rgba(37,211,102,0.2); }
+        .spec-container { padding: 0 15px 15px; display: flex; flex-direction: column; gap: 8px; }
+        .spec-item { display: grid; grid-template-columns: 85px 10px 1fr; font-size: 11px; line-height: 1.5; color: var(--dark); }
+        .spec-label { font-weight: 700; color: var(--gray); }
+        .spec-value { font-weight: 500; }
 
-        /* Lightbox */
-        #zoomModal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-        #zoomModal img { max-width: 95%; max-height: 80%; object-fit: contain; }
+        .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25D366; color: #fff; padding: 16px; border-radius: 18px; text-decoration: none; font-weight: 800; font-size: 14px; transition: 0.3s; }
+        .wa-btn:active { transform: scale(0.98); }
 
-        #loading { text-align: center; padding: 100px 0; color: var(--gray); }
-        @media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } .controls { top: 75px; } }
+        /* Zoom Modal */
+        #zoomModal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        #zoomModal img { max-width: 95%; max-height: 85%; object-fit: contain; border: 2px solid white; border-radius: 8px; }
+
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        @keyframes shine { 0% { background-position: -200%; } 100% { background-position: 200%; } }
+        @media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } .dealer-slider { height: 400px; } }
     </style>
 </head>
 <body>
+
+    <div class="top-info-bar">
+        <div class="live-date-time">
+            <span id="top-date">Memuat...</span>
+            <span id="top-clock" style="color: #fbbf24;">00:00:00</span>
+        </div>
+        <div id="top-status-badge" class="store-status-top"></div>
+    </div>
 
     <nav class="navbar">
         <img src="logo.jpg" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/200x50?text=YAMAHA+LOGO'">
@@ -117,19 +134,20 @@
         <p>Dealer Yamaha terpercaya sejak 2015 memberikan pelayanan terbaik bagi masyarakat di kota ngawi.</p>
     </div>
 
+    <div class="dealer-slider" onclick="openZoomFromSlider()">
+        <div class="dealer-slides" id="localDealerSlides">
+            <img src="foto1.jpg" id="imgDealer1" onerror="this.src='https://via.placeholder.com/800x400?text=Foto+1'">
+            <img src="foto2.jpg" id="imgDealer2" onerror="this.src='https://via.placeholder.com/800x400?text=Foto+2'">
+            <img src="foto3.jpg" id="imgDealer3" onerror="this.src='https://via.placeholder.com/800x400?text=Foto+3'">
+            <img src="foto4.jpg" id="imgDealer4" onerror="this.src='https://via.placeholder.com/800x400?text=Foto+4'">
+            <img src="foto5.jpg" id="imgDealer5" onerror="this.src='https://via.placeholder.com/800x400?text=Foto+5'">
+        </div>
+    </div>
+
     <div class="features-bar">
-        <div class="feat-item">
-            <i class="fas fa-certificate"></i>
-            <span>DEALER RESMI</span>
-        </div>
-        <div class="feat-item">
-            <i class="fas fa-tools"></i>
-            <span>SERVICE TERPERCAYA</span>
-        </div>
-        <div class="feat-item">
-            <i class="fas fa-percentage"></i>
-            <span>DP RINGAN</span>
-        </div>
+        <div class="feat-item"><i class="fas fa-certificate"></i><span>DEALER RESMI</span></div>
+        <div class="feat-item"><i class="fas fa-tools"></i><span>SERVICE TERPERCAYA</span></div>
+        <div class="feat-item"><i class="fas fa-percentage"></i><span>DP RINGAN</span></div>
     </div>
 
     <div class="controls">
@@ -145,31 +163,55 @@
             <button class="tab-btn" onclick="doFilter('classy', this)">Classy</button>
             <button class="tab-btn" onclick="doFilter('matic', this)">Matic</button>
             <button class="tab-btn" onclick="doFilter('sport', this)">Sport</button>
-            <button class="tab-btn" onclick="doFilter('off road', this)">Off Road</button>
-            <button class="tab-btn" onclick="doFilter('moped', this)">Moped</button>
         </div>
     </div>
 
-    <div id="loading"><i class="fas fa-spinner fa-spin fa-2x"></i></div>
+    <div id="loading" style="text-align: center; padding: 40px;"><i class="fas fa-spinner fa-spin fa-2x"></i></div>
     <div class="grid" id="mainContainer"></div>
 
-    <div id="zoomModal" onclick="this.style.display='none'">
-        <img id="zoomImg">
-    </div>
+    <div id="zoomModal" onclick="this.style.display='none'"><img id="zoomImg"></div>
 
     <script>
         const CONFIG = {
             API_URL: "https://sheetdb.io/api/v1/qjjio707oz536",
-            WA_PHONE: "6285725493220",
-            DEALER: "Maju Jaya Abadi Ngawi"
+            WA_PHONE: "6285725493220"
         };
+
+        function updateRealTimeInfo() {
+            const now = new Date();
+            const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
+            document.getElementById('top-date').innerText = now.toLocaleDateString('id-ID', options);
+            document.getElementById('top-clock').innerText = now.toLocaleTimeString('id-ID', { hour12: false });
+
+            const hours = now.getHours();
+            const day = now.getDay();
+            const badge = document.getElementById('top-status-badge');
+            const isOpen = (day >= 1 && day <= 6) && (hours >= 9 && hours < 21);
+
+            if (isOpen) {
+                badge.innerHTML = `<span class="dot-status dot-open"></span> <span style="color:var(--open-green)">Buka Sekarang</span>`;
+            } else {
+                badge.innerHTML = `<span class="dot-status dot-closed"></span> <span style="color:var(--yamaha-red)">Tutup</span>`;
+            }
+        }
+        setInterval(updateRealTimeInfo, 1000);
+        updateRealTimeInfo();
+
+        let currentLocalSlide = 0;
+        function runLocalSlider() {
+            const slides = document.getElementById('localDealerSlides');
+            if(!slides) return;
+            currentLocalSlide = (currentLocalSlide + 1) % 5;
+            slides.style.transform = `translateX(-${currentLocalSlide * 100}%)`;
+        }
+        setInterval(runLocalSlider, 4000);
+
+        function openZoomFromSlider() {
+            openZoom(document.getElementById(`imgDealer${currentLocalSlide + 1}`).src);
+        }
 
         let rawData = [];
-
-        const formatIDR = (n) => {
-            if (!n || isNaN(n)) return null;
-            return "Rp " + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        };
+        const formatIDR = (n) => n ? "Rp " + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : null;
 
         async function fetchMaster() {
             try {
@@ -177,9 +219,12 @@
                 rawData = await res.json();
                 document.getElementById('loading').style.display = 'none';
                 renderMaster('promo');
-            } catch (e) {
-                document.getElementById('loading').innerHTML = "Database Error.";
-            }
+            } catch (e) { document.getElementById('loading').innerText = "Gagal memuat data."; }
+        }
+
+        function updateCounter(el, index, total) {
+            const page = Math.round(el.scrollLeft / el.offsetWidth) + 1;
+            document.getElementById(`counter-${index}`).innerText = `${page}/${total}`;
         }
 
         function renderMaster(filter = 'promo', query = '') {
@@ -189,59 +234,47 @@
             const data = rawData.filter(m => {
                 const sMatch = m.nama?.toLowerCase().includes(query.toLowerCase());
                 if (query !== "") return sMatch;
-                if (filter === 'promo') {
-                    return m.promo && m.promo.trim() !== "";
-                }
+                if (filter === 'promo') return m.promo && m.promo.trim() !== "";
                 return m.cat?.toLowerCase() === filter.toLowerCase();
             });
 
-            if (data.length === 0) {
-                container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 80px 20px; color: #94a3b8;"><p>Belum ada unit untuk kategori ini.</p></div>`;
-                return;
-            }
-
             data.forEach((m, idx) => {
-                const hasPromo = m.promo && m.promo.trim() !== "";
-                const isNumericPromo = hasPromo && !isNaN(m.promo);
                 const imgs = [m.img, m.img1, m.img2, m.img3, m.img4, m.img5].filter(p => p && p.trim() !== "");
-                
-                // Variabel untuk format WA
-                const displayPrice = isNumericPromo ? formatIDR(m.promo) : formatIDR(m.harga);
-                const waText = encodeURIComponent(`Halo ka, aku mau tanya produk ini: ${m.nama}, dan ${displayPrice}`);
+                const totalImgs = imgs.length;
+                const price = (m.promo && !isNaN(m.promo)) ? m.promo : m.harga;
 
                 container.innerHTML += `
-                <div class="card" style="animation-delay: ${idx * 0.05}s">
-                    ${hasPromo ? `<div class="promo-ribbon">Special Promo</div>` : ''}
+                <div class="card">
                     <div class="gallery">
-                        <div class="gallery-scroll">
-                            ${imgs.map(p => `<div class="slide" onclick="document.getElementById('zoomImg').src='${p}'; document.getElementById('zoomModal').style.display='flex'"><img src="${p}" loading="lazy"></div>`).join('')}
+                        <div class="img-counter" id="counter-${idx}">1/${totalImgs}</div>
+                        <div class="gallery-scroll" onscroll="updateCounter(this, ${idx}, ${totalImgs})">
+                            ${imgs.map(p => `<div class="slide"><img src="${p}" onclick="openZoom(this.src)"></div>`).join('')}
                         </div>
                     </div>
                     <div class="card-info">
-                        <div class="motor-cat">${m.cat || 'Yamaha'}</div>
                         <h3 class="motor-name">${m.nama}</h3>
-                        <div style="margin-bottom: 15px;">
-                            ${hasPromo && isNumericPromo ? `<span class="old-price">${formatIDR(m.harga)}</span>` : ''}
-                            <span class="new-price">${displayPrice}</span>
-                            ${hasPromo && !isNumericPromo ? `<span class="promo-tagline">${m.promo}</span>` : ''}
-                        </div>
-
+                        <p class="new-price">${formatIDR(price)}</p>
                         <details>
                             <summary>Spesifikasi Produk</summary>
-                            <div class="spec-box">
-                                <div class="row"><span class="lbl">Mesin</span>: ${m.mesin || '-'}</div>
-                                <div class="row"><span class="lbl">Rangka</span>: ${m.rangka || '-'}</div>
-                                <div class="row"><span class="lbl">Dimensi</span>: ${m.dimensi || '-'}</div>
-                                <div class="row"><span class="lbl">Kelistrikan</span>: ${m.kelistrikan || '-'}</div>
+                            <div class="spec-container">
+                                <div class="spec-item"><span class="spec-label">Mesin</span><span>:</span><span class="spec-value">${m.mesin || '-'}</span></div>
+                                <div class="spec-item"><span class="spec-label">Rangka</span><span>:</span><span class="spec-value">${m.rangka || '-'}</span></div>
+                                <div class="spec-item"><span class="spec-label">Dimensi</span><span>:</span><span class="spec-value">${m.dimensi || '-'}</span></div>
+                                <div class="spec-item"><span class="spec-label">Kelistrikan</span><span>:</span><span class="spec-value">${m.kelistrikan || '-'}</span></div>
                             </div>
                         </details>
-
-                        <a href="https://wa.me/${CONFIG.WA_PHONE}?text=${waText}" target="_blank" class="wa-btn">
-                            <i class="fab fa-whatsapp"></i> AMBIL PROMO
+                        <a href="https://wa.me/${CONFIG.WA_PHONE}?text=Halo Yamaha Maju Jaya, saya tertarik dengan ${m.nama}" class="wa-btn">
+                            <i class="fab fa-whatsapp"></i> HUBUNGI KAMI
                         </a>
                     </div>
                 </div>`;
             });
+        }
+
+        function openZoom(src) {
+            const zoomImg = document.getElementById('zoomImg');
+            zoomImg.src = src;
+            document.getElementById('zoomModal').style.display = 'flex';
         }
 
         const doSearch = () => renderMaster('promo', document.getElementById('mainSearch').value);
@@ -250,7 +283,6 @@
             b.classList.add('active');
             renderMaster(c);
         };
-
         fetchMaster();
     </script>
 </body>

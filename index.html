@@ -17,6 +17,8 @@
             --light: #f1f5f9;
             --white: #ffffff;
             --open-green: #22c55e;
+            --promo-blue: #e0f2fe;
+            --promo-text: #0369a1;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -24,17 +26,9 @@
 
         /* JAM & TANGGAL PALING ATAS */
         .top-info-bar { 
-            background: #000; 
-            color: white; 
-            padding: 8px 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            font-size: 10px; 
-            font-weight: 600;
-            position: sticky;
-            top: 0;
-            z-index: 1100;
+            background: #000; color: white; padding: 8px 5%; display: flex; 
+            justify-content: space-between; align-items: center; font-size: 10px; 
+            font-weight: 600; position: sticky; top: 0; z-index: 1100;
         }
         .live-date-time { display: flex; gap: 10px; align-items: center; }
         .store-status-top { display: flex; align-items: center; gap: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -42,76 +36,72 @@
         .dot-open { background: var(--open-green); box-shadow: 0 0 8px var(--open-green); }
         .dot-closed { background: var(--yamaha-red); }
 
-        /* Navbar */
+        /* NAVBAR */
         .navbar { display: flex; flex-direction: column; align-items: center; padding: 10px 6%; background: var(--white); position: sticky; top: 31px; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
         .logo-img { height: 40px; margin-bottom: 5px; object-fit: contain; }
         .brand-name { font-size: 13px; font-weight: 800; color: var(--yamaha-blue); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Hero */
+        /* HERO */
         .hero { background: linear-gradient(135deg, var(--yamaha-blue) 0%, #001a4d 100%); color: var(--white); padding: 35px 8% 25px; text-align: center; }
         .hero h1 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
         .dealer-name-animate { display: inline-block; background: linear-gradient(90deg, #fff, #93c5fd, #fff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; }
 
-        /* Slider Dealer */
+        /* SLIDER DEALER (TIDAK BERUBAH) */
         .dealer-slider { width: 100%; height: 230px; position: relative; overflow: hidden; background: #ddd; cursor: zoom-in; }
         .dealer-slides { display: flex; transition: transform 0.6s ease-in-out; height: 100%; }
         .dealer-slides img { min-width: 100%; object-fit: cover; }
 
-        /* Ikon Keunggulan */
-        .features-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 20px 6% 10px; text-align: center; }
-        .feat-item { background: var(--white); padding: 12px 5px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
-        .feat-item i { color: var(--yamaha-red); font-size: 18px; margin-bottom: 5px; display: block; }
-        .feat-item span { font-size: 9px; font-weight: 700; color: var(--dark); text-transform: uppercase; }
-
-        /* Controls */
-        .controls { position: sticky; top: 110px; z-index: 990; background: var(--light); padding: 15px 0 10px; }
-        .search-box { padding: 0 6% 12px; }
-        .search-inner { background: var(--white); border-radius: 12px; display: flex; align-items: center; padding: 0 15px; border: 1px solid #e2e8f0; }
-        .search-inner input { width: 100%; border: none; padding: 12px; outline: none; font-size: 14px; }
-        
-        .tabs { display: flex; gap: 8px; overflow-x: auto; padding: 0 6% 15px; scrollbar-width: none; }
-        .tabs::-webkit-scrollbar { display: none; }
-        .tab-btn { padding: 10px 20px; border: 1.5px solid #e2e8f0; background: var(--white); border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--gray); white-space: nowrap; cursor: pointer; }
-        .tab-btn.active { background: var(--yamaha-blue); color: var(--white); border-color: var(--yamaha-blue); }
-
-        /* Card Unit */
-        .grid { display: grid; grid-template-columns: 1fr; gap: 25px; padding: 10px 6% 60px; }
+        /* KARTU UNIT */
+        .grid { display: grid; grid-template-columns: 1fr; gap: 25px; padding: 25px 6% 40px; }
         .card { background: var(--white); border-radius: 24px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.04); position: relative; }
-        
-        /* Gallery Unit */
+        .promo-badge { position: absolute; top: 15px; right: 15px; background: var(--yamaha-red); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 50; border: 2px solid #fff; animation: pulse 2s infinite; }
+
+        /* BOX KETERANGAN PROMO */
+        .promo-desc-box { background: var(--promo-blue); color: var(--promo-text); padding: 10px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; margin: 10px 0; border: 1px dashed var(--promo-text); display: flex; align-items: center; gap: 8px; }
+
+        /* GALLERY & DETAILS */
         .gallery { position: relative; background: #fff; overflow: hidden; }
         .gallery-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
         .slide { min-width: 100%; height: 230px; scroll-snap-align: start; display: flex; align-items: center; justify-content: center; padding: 20px; }
         .slide img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; }
-        .img-counter { position: absolute; bottom: 15px; right: 15px; background: rgba(0,0,0,0.6); color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; z-index: 10; }
-
-        /* Card Details */
+        .img-counter { position: absolute; bottom: 15px; right: 15px; background: rgba(0,0,0,0.6); color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; z-index: 10; }
         .card-info { padding: 20px; }
         .motor-name { font-size: 18px; font-weight: 800; margin-bottom: 5px; }
-        .new-price { font-size: 19px; font-weight: 800; color: var(--yamaha-red); margin-bottom: 15px; }
+        .new-price { font-size: 19px; font-weight: 800; color: var(--yamaha-red); }
 
-        /* Perbaikan Spesifikasi Berantakan */
-        details { background: #f8fafc; border-radius: 15px; border: 1px solid #eef2f6; margin-bottom: 15px; overflow: hidden; }
+        /* SPESIFIKASI RAPI */
+        details { background: #f8fafc; border-radius: 15px; border: 1px solid #eef2f6; margin-bottom: 15px; }
         summary { padding: 12px 15px; font-size: 12px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-        summary::-webkit-details-marker { display: none; }
-        summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 10px; transition: 0.3s; }
+        summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 10px; }
         details[open] summary::after { transform: rotate(180deg); }
-
         .spec-container { padding: 0 15px 15px; display: flex; flex-direction: column; gap: 8px; }
-        .spec-item { display: grid; grid-template-columns: 85px 10px 1fr; font-size: 11px; line-height: 1.5; color: var(--dark); }
+        .spec-item { display: grid; grid-template-columns: 85px 10px 1fr; font-size: 11px; }
         .spec-label { font-weight: 700; color: var(--gray); }
-        .spec-value { font-weight: 500; }
 
-        .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25D366; color: #fff; padding: 16px; border-radius: 18px; text-decoration: none; font-weight: 800; font-size: 14px; transition: 0.3s; }
-        .wa-btn:active { transform: scale(0.98); }
+        .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25D366; color: #fff; padding: 16px; border-radius: 18px; text-decoration: none; font-weight: 800; font-size: 14px; }
 
-        /* Zoom Modal */
-        #zoomModal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-        #zoomModal img { max-width: 95%; max-height: 85%; object-fit: contain; border: 2px solid white; border-radius: 8px; }
+        /* FOOTER SOSMED & KETERANGAN */
+        .main-footer { background: var(--white); padding: 40px 6% 20px; border-top: 1px solid #e2e8f0; text-align: center; }
+        .social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
+        .social-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; text-decoration: none; }
+        .fb { background: #1877F2; } .ig { background: linear-gradient(45deg, #f09433 0%, #bc1888 100%); }
+        .footer-desc { font-size: 11px; color: var(--gray); line-height: 1.6; margin-bottom: 20px; max-width: 450px; margin-left: auto; margin-right: auto; }
 
+        /* CONTROLS STICKY */
+        .controls { position: sticky; top: 110px; z-index: 990; background: var(--light); padding: 15px 0 10px; }
+        .search-box { padding: 0 6% 12px; }
+        .search-inner { background: var(--white); border-radius: 12px; display: flex; align-items: center; padding: 0 15px; border: 1px solid #e2e8f0; }
+        .search-inner input { width: 100%; border: none; padding: 12px; outline: none; font-size: 14px; }
+        .tabs { display: flex; gap: 8px; overflow-x: auto; padding: 0 6% 15px; scrollbar-width: none; }
+        .tab-btn { padding: 10px 20px; border: 1.5px solid #e2e8f0; background: var(--white); border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--gray); white-space: nowrap; }
+        .tab-btn.active { background: var(--yamaha-blue); color: var(--white); border-color: var(--yamaha-blue); }
+
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
         @keyframes shine { 0% { background-position: -200%; } 100% { background-position: 200%; } }
-        @media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } .dealer-slider { height: 400px; } }
+        @media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+        #zoomModal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+        #zoomModal img { max-width: 95%; max-height: 85%; object-fit: contain; }
     </style>
 </head>
 <body>
@@ -125,7 +115,7 @@
     </div>
 
     <nav class="navbar">
-        <img src="logo.jpg" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/200x50?text=YAMAHA+LOGO'">
+        <img src="logo.jpg" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/200x50?text=YAMAHA'">
         <div class="brand-name">Maju Jaya Abadi</div>
     </nav>
 
@@ -136,18 +126,12 @@
 
     <div class="dealer-slider" onclick="openZoomFromSlider()">
         <div class="dealer-slides" id="localDealerSlides">
-            <img src="foto1.jpg" id="imgDealer1" onerror="this.src='https://via.placeholder.com/800x400?text=Foto+1'">
-            <img src="foto2.jpg" id="imgDealer2" onerror="this.src='https://via.placeholder.com/800x400?text=Foto+2'">
-            <img src="foto3.jpg" id="imgDealer3" onerror="this.src='https://via.placeholder.com/800x400?text=Foto+3'">
-            <img src="foto4.jpg" id="imgDealer4" onerror="this.src='https://via.placeholder.com/800x400?text=Foto+4'">
-            <img src="foto5.jpg" id="imgDealer5" onerror="this.src='https://via.placeholder.com/800x400?text=Foto+5'">
+            <img src="foto1.jpg" id="imgDealer1" onerror="this.src='https://via.placeholder.com/800x400?text=Dealer+1'">
+            <img src="foto2.jpg" id="imgDealer2" onerror="this.src='https://via.placeholder.com/800x400?text=Dealer+2'">
+            <img src="foto3.jpg" id="imgDealer3" onerror="this.src='https://via.placeholder.com/800x400?text=Dealer+3'">
+            <img src="foto4.jpg" id="imgDealer4" onerror="this.src='https://via.placeholder.com/800x400?text=Dealer+4'">
+            <img src="foto5.jpg" id="imgDealer5" onerror="this.src='https://via.placeholder.com/800x400?text=Dealer+5'">
         </div>
-    </div>
-
-    <div class="features-bar">
-        <div class="feat-item"><i class="fas fa-certificate"></i><span>DEALER RESMI</span></div>
-        <div class="feat-item"><i class="fas fa-tools"></i><span>SERVICE TERPERCAYA</span></div>
-        <div class="feat-item"><i class="fas fa-percentage"></i><span>DP RINGAN</span></div>
     </div>
 
     <div class="controls">
@@ -169,6 +153,18 @@
     <div id="loading" style="text-align: center; padding: 40px;"><i class="fas fa-spinner fa-spin fa-2x"></i></div>
     <div class="grid" id="mainContainer"></div>
 
+    <footer class="main-footer">
+        <div class="social-links">
+            <a href="https://facebook.com/username" target="_blank" class="social-icon fb"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/username" target="_blank" class="social-icon ig"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="footer-desc">
+            <strong>Yamaha Maju Jaya Abadi Ngawi</strong><br>
+            Dealer Resmi Yamaha di Ngawi. Kami melayani penjualan unit cash/kredit serta layanan bengkel resmi.
+        </div>
+        <div style="font-size: 10px; color: #94a3b8;">&copy; 2026 Maju Jaya Abadi Ngawi. Melayani anda dengan sepenuh hati.</div>
+    </footer>
+
     <div id="zoomModal" onclick="this.style.display='none'"><img id="zoomImg"></div>
 
     <script>
@@ -182,17 +178,11 @@
             const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
             document.getElementById('top-date').innerText = now.toLocaleDateString('id-ID', options);
             document.getElementById('top-clock').innerText = now.toLocaleTimeString('id-ID', { hour12: false });
-
             const hours = now.getHours();
             const day = now.getDay();
             const badge = document.getElementById('top-status-badge');
             const isOpen = (day >= 1 && day <= 6) && (hours >= 9 && hours < 21);
-
-            if (isOpen) {
-                badge.innerHTML = `<span class="dot-status dot-open"></span> <span style="color:var(--open-green)">Buka Sekarang</span>`;
-            } else {
-                badge.innerHTML = `<span class="dot-status dot-closed"></span> <span style="color:var(--yamaha-red)">Tutup</span>`;
-            }
+            badge.innerHTML = isOpen ? `<span class="dot-status dot-open"></span> Buka` : `<span class="dot-status dot-closed"></span> Tutup`;
         }
         setInterval(updateRealTimeInfo, 1000);
         updateRealTimeInfo();
@@ -211,7 +201,7 @@
         }
 
         let rawData = [];
-        const formatIDR = (n) => n ? "Rp " + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : null;
+        const formatIDR = (n) => n && !isNaN(n) ? "Rp " + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : n;
 
         async function fetchMaster() {
             try {
@@ -230,7 +220,6 @@
         function renderMaster(filter = 'promo', query = '') {
             const container = document.getElementById('mainContainer');
             container.innerHTML = "";
-
             const data = rawData.filter(m => {
                 const sMatch = m.nama?.toLowerCase().includes(query.toLowerCase());
                 if (query !== "") return sMatch;
@@ -239,31 +228,39 @@
             });
 
             data.forEach((m, idx) => {
+                const hasPromo = m.promo && m.promo.trim() !== "";
                 const imgs = [m.img, m.img1, m.img2, m.img3, m.img4, m.img5].filter(p => p && p.trim() !== "");
                 const totalImgs = imgs.length;
-                const price = (m.promo && !isNaN(m.promo)) ? m.promo : m.harga;
 
                 container.innerHTML += `
                 <div class="card">
+                    ${hasPromo ? `<div class="promo-badge"><i class="fas fa-tags"></i></div>` : ''}
                     <div class="gallery">
-                        <div class="img-counter" id="counter-${idx}">1/${totalImgs}</div>
+                        <div class="img-counter" id="counter-${idx}">${totalImgs > 0 ? '1/'+totalImgs : ''}</div>
                         <div class="gallery-scroll" onscroll="updateCounter(this, ${idx}, ${totalImgs})">
                             ${imgs.map(p => `<div class="slide"><img src="${p}" onclick="openZoom(this.src)"></div>`).join('')}
                         </div>
                     </div>
                     <div class="card-info">
                         <h3 class="motor-name">${m.nama}</h3>
-                        <p class="new-price">${formatIDR(price)}</p>
+                        <p class="new-price">${formatIDR(m.harga)}</p>
+                        
+                        ${hasPromo ? `
+                        <div class="promo-desc-box">
+                            <i class="fas fa-info-circle"></i>
+                            <span>${m.promo}</span>
+                        </div>` : ''}
+
                         <details>
                             <summary>Spesifikasi Produk</summary>
                             <div class="spec-container">
-                                <div class="spec-item"><span class="spec-label">Mesin</span><span>:</span><span class="spec-value">${m.mesin || '-'}</span></div>
-                                <div class="spec-item"><span class="spec-label">Rangka</span><span>:</span><span class="spec-value">${m.rangka || '-'}</span></div>
-                                <div class="spec-item"><span class="spec-label">Dimensi</span><span>:</span><span class="spec-value">${m.dimensi || '-'}</span></div>
-                                <div class="spec-item"><span class="spec-label">Kelistrikan</span><span>:</span><span class="spec-value">${m.kelistrikan || '-'}</span></div>
+                                <div class="spec-item"><span class="spec-label">Mesin</span><span>:</span><span>${m.mesin || '-'}</span></div>
+                                <div class="spec-item"><span class="spec-label">Rangka</span><span>:</span><span>${m.rangka || '-'}</span></div>
+                                <div class="spec-item"><span class="spec-label">Dimensi</span><span>:</span><span>${m.dimensi || '-'}</span></div>
+                                <div class="spec-item"><span class="spec-label">Kelistrikan</span><span>:</span><span>${m.kelistrikan || '-'}</span></div>
                             </div>
                         </details>
-                        <a href="https://wa.me/${CONFIG.WA_PHONE}?text=Halo Yamaha Maju Jaya, saya tertarik dengan ${m.nama}" class="wa-btn">
+                        <a href="https://wa.me/${CONFIG.WA_PHONE}?text=Halo, tanya promo ${m.nama}" class="wa-btn">
                             <i class="fab fa-whatsapp"></i> HUBUNGI KAMI
                         </a>
                     </div>
@@ -271,12 +268,7 @@
             });
         }
 
-        function openZoom(src) {
-            const zoomImg = document.getElementById('zoomImg');
-            zoomImg.src = src;
-            document.getElementById('zoomModal').style.display = 'flex';
-        }
-
+        function openZoom(src) { document.getElementById('zoomImg').src = src; document.getElementById('zoomModal').style.display = 'flex'; }
         const doSearch = () => renderMaster('promo', document.getElementById('mainSearch').value);
         const doFilter = (c, b) => {
             document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));

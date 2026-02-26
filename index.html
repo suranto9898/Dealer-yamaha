@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Katalog Yamaha | Dealer Resmi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --yamaha-blue: #003399;
+            --yamaha-red: #ED1C24;
+            --bg-light: #f8f9fa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg-light); color: #333; padding-bottom: 30px; }
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 6%; background: #fff; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-size: 18px; font-weight: 800; color: var(--yamaha-blue); font-style: italic; }
+        .logo span { color: var(--yamaha-red); }
+
+        .sticky-nav { position: sticky; top: 54px; z-index: 999; background: var(--bg-light); padding: 15px 0 5px; }
+        .search-area { padding: 0 6% 12px; }
+        .search-box { background: #fff; border-radius: 10px; display: flex; align-items: center; padding: 0 12px; border: 1px solid #ddd; }
+        .search-box input { width: 100%; border: none; padding: 10px; outline: none; font-size: 14px; }
+
+        .filter-tabs { display: flex; gap: 8px; overflow-x: auto; padding: 0 6% 15px; scrollbar-width: none; }
+        .filter-tabs::-webkit-scrollbar { display: none; }
+        .tab-btn { padding: 10px 22px; border: 1.5px solid #ddd; background: #fff; border-radius: 50px; font-size: 11px; font-weight: 700; white-space: nowrap; cursor: pointer; color: #666; }
+        .tab-btn.active { background: var(--yamaha-blue); color: #fff; border-color: var(--yamaha-blue); }
+
+        .motor-grid { display: grid; grid-template-columns: 1fr; gap: 20px; padding: 10px 6%; }
+        .motor-card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .img-box { width: 100%; height: 200px; background: #fff; padding: 15px; display: flex; align-items: center; justify-content: center; }
+        .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        .card-info { padding: 15px; }
+        .cat-label { font-size: 10px; font-weight: 800; color: var(--yamaha-blue); text-transform: uppercase; }
+        .motor-name { font-size: 18px; font-weight: 800; margin: 2px 0; }
+        .motor-price { font-size: 16px; font-weight: 700; color: var(--yamaha-red); margin-bottom: 10px; }
+
+        /* Stock Badge */
+        .stock-badge { display: inline-block; padding: 3px 10px; border-radius: 5px; font-size: 10px; font-weight: 700; margin-bottom: 10px; }
+        .stock-ready { background: #e8f5e9; color: #2e7d32; }
+        .stock-indent { background: #fff3e0; color: #ef6c00; }
+
+        /* Accordion Spec */
+        details { background: #f8f9fa; border-radius: 8px; margin-bottom: 15px; border: 1px solid #eee; }
+        summary { padding: 10px; font-size: 12px; font-weight: 700; cursor: pointer; outline: none; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary::after { content: ''; font-size: 10px; color: var(--yamaha-blue); }
+        details[open] summary::after { content: ''; }
+        
+        .spec-content { padding: 0 10px 10px; font-size: 11px; color: #555; line-height: 1.6; }
+        .spec-content b { color: #333; }
+
+        .btn-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25D366; color: white; padding: 14px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 14px; }
+
+        #loader { text-align: center; padding: 60px 0; color: #888; }
+
+        @media (min-width: 768px) { .motor-grid { grid-template-columns: repeat(3, 1fr); } }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">YAMAHA<span> CATALOG</span></div>
+        <i class="fas fa-motorcycle" style="color: var(--yamaha-blue);"></i>
+    </nav>
+
+    <div class="sticky-nav">
+        <div class="search-area">
+            <div class="search-box">
+                <i class="fas fa-search" style="color:#ccc;"></i>
+                <input type="text" id="motorSearch" placeholder="Cari nama motor..." onkeyup="searchMotor()">
+            </div>
+        </div>
+        <div class="filter-tabs">
+            <button class="tab-btn active" id="tab-semua" onclick="filterData('semua', this)">Semua</button>
+            <button class="tab-btn" onclick="filterData('maxi', this)">MAXi</button>
+            <button class="tab-btn" onclick="filterData('classy', this)">Classy</button>
+            <button class="tab-btn" onclick="filterData('matic', this)">Matic</button>
+            <button class="tab-btn" onclick="filterData('sport', this)">Sport</button>
+            <button class="tab-btn" onclick="filterData('off road', this)">Off Road</button>
+            <button class="tab-btn" onclick="filterData('moped', this)">Moped</button>
+        </div>
+    </div>
+
+    <div id="loader"><i class="fas fa-circle-notch fa-spin fa-2x"></i></div>
+    <div class="motor-grid" id="motor-list"></div>
+
+    <script>
+        const noWA = "6285725493220"; 
+        const sheetDB_URL = "https://sheetdb.io/api/v1/qjjio707oz536"; 
+
+        let motorData = []; 
+
+        async function loadData() {
+            try {
+                const res = await fetch(sheetDB_URL);
+                motorData = await res.json();
+                document.getElementById('loader').style.display = 'none';
+                render('semua'); 
+            } catch (err) { document.getElementById('loader').innerText = "Gagal memuat data."; }
+        }
+
+        function render(f = 'semua', query = '') {
+            const container = document.getElementById('motor-list');
+            container.innerHTML = "";
+
+            const filtered = motorData.filter(m => {
+                const s = m.nama?.toLowerCase().includes(query);
+                if (query !== "") return s;
+                if (f === 'semua') return true;
+                return m.cat?.toLowerCase() === f.toLowerCase();
+            });
+
+            filtered.forEach(m => {
+                const isReady = m.stock?.toLowerCase() === 'ready';
+                
+                container.innerHTML += `
+                <div class="motor-card">
+                    <div class="img-box">
+                        <img src="${m.img}" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
+                    </div>
+                    <div class="card-info">
+                        <div class="cat-label">${m.cat}</div>
+                        <h3 class="motor-name">${m.nama}</h3>
+                        <div class="motor-price">Rp ${m.harga}</div>
+                        
+                        <div class="stock-badge ${isReady ? 'stock-ready' : 'stock-indent'}">
+                            <i class="fas ${isReady ? 'fa-check-circle' : 'fa-clock'}"></i> Stock: ${m.stock || 'Hubungi Sales'}
+                        </div>
+
+                        <details>
+                            <summary>Lihat Spesifikasi</summary>
+                            <div class="spec-content">
+                                <b><i class="fas fa-bolt"></i> Mesin:</b> ${m.mesin || '-'}<br>
+                                <b><i class="fas fa-cogs"></i> Rangka:</b> ${m.rangka || '-'}<br>
+                                <b><i class="fas fa-arrows-alt"></i> Dimensi:</b> ${m.dimensi || '-'}<br>
+                                <b><i class="fas fa-bolt"></i> Kelistrikan:</b> ${m.kelistrikan || '-'}
+                            </div>
+                        </details>
+
+                        <a href="https://wa.me/${noWA}?text=Halo! Saya tanya unit *${m.nama}* (Stock: ${m.stock})" target="_blank" class="btn-wa">
+                            <i class="fab fa-whatsapp"></i> Chat Sales
+                        </a>
+                    </div>
+                </div>`;
+            });
+        }
+
+        function searchMotor() {
+            const q = document.getElementById('motorSearch').value.toLowerCase();
+            render('semua', q);
+        }
+
+        function filterData(cat, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            render(cat);
+        }
+
+        loadData();
+    </script>
+</body>
+</html>

@@ -129,6 +129,35 @@
     color: #cbd5e1; /* Warna abu-abu terang agar lebih elegan */
 }
 
+/* SOCIAL MEDIA FOOTER */
+.social-links { 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+    margin-bottom: 20px; 
+}
+
+.social-icon { 
+    width: 45px; 
+    height: 45px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: white; 
+    text-decoration: none; 
+    font-size: 20px; 
+    transition: 0.3s;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px); /* Efek melompat saat disentuh */
+    opacity: 0.9;
+}
+
+.fb { background: #1877F2; } /* Warna Biru Facebook */
+.ig { background: linear-gradient(45deg, #f09433 0%, #bc1888 100%); } /* Gradasi Instagram */
+
         .grid { display: grid; grid-template-columns: 1fr; gap: 30px; padding: 15px 6% 50px; }
         .card { background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; transition: 0.3s; position: relative; }
         .gallery { position: relative; height: 260px; background: #fff; }
@@ -184,11 +213,23 @@
 
     <div class="section-label">Promo Bulan Ini :</div>
     <div class="custom-slider-container">
-        <div class="slides-scroll" id="promoScroll">
-            <div class="slide-item"><img src="promo1.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+1'"></div>
-            <div class="slide-item"><img src="promo2.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+2'"></div>
-        </div>
+    <div class="slides-scroll" id="promoScroll" onscroll="syncDots('promoScroll', 'promoDots')">
+        <div class="slide-item"><img src="promo1.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+1'"></div>
+        <div class="slide-item"><img src="promo2.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+2'"></div>
+        <div class="slide-item"><img src="promo3.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+3'"></div>
+        <div class="slide-item"><img src="promo4.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+4'"></div>
+        <div class="slide-item"><img src="promo5.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+5'"></div>
     </div>
+    
+    <div class="slider-dots" id="promoDots">
+        <div class="s-dot active"></div>
+        <div class="s-dot"></div>
+        <div class="s-dot"></div>
+        <div class="s-dot"></div>
+        <div class="s-dot"></div>
+    </div>
+</div>
+
 
     <div class="controls">
         <div class="search-box">
@@ -206,96 +247,179 @@
             <button class="tab-btn" onclick="doFilter('moped', this)">Moped</button> 
         </div>
     </div>
+    
+    
 
     <div id="loading" style="text-align: center; padding: 50px;"><i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--yamaha-blue);"></i></div>
     <div class="grid" id="mainContainer"></div>
+<div class="section-label">Tentang Kami :</div>
+<div class="custom-slider-container">
+    <div class="slides-scroll" id="aboutScroll" onscroll="syncDots('aboutScroll', 'aboutDots')">
+        <div class="slide-item"><img src="foto1.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+1'"></div>
+        <div class="slide-item"><img src="foto2.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'"></div>
+        <div class="slide-item"><img src="foto3.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+3'"></div>
+        <div class="slide-item"><img src="foto4.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+4'"></div>
+        <div class="slide-item"><img src="foto5.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+5'"></div>
+    </div>
+    <div class="slider-dots" id="aboutDots">
+        <div class="s-dot active"></div>
+        <div class="s-dot"></div>
+        <div class="s-dot"></div>
+        <div class="s-dot"></div>
+        <div class="s-dot"></div>
+    </div>
+</div>
 
     <footer>
-        <div style="font-weight: 800; color: var(--dark-steel); text-transform: uppercase; font-size: 13px;">Yamaha Maju Jaya Abadi Ngawi</div>
-        <div style="font-size: 11px; color: var(--slate-gray); margin-top: 5px;">Melayani Cash, Kredit, dan Service Resmi.</div>
-    </footer>
+    
+    <div class="social-links">
+        <a href="https://facebook.com/USERNAME_ANDA" target="_blank" class="social-icon fb">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com/USERNAME_ANDA" target="_blank" class="social-icon ig">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+
+    <div style="font-weight: 800; color: var(--dark-steel); text-transform: uppercase; font-size: 13px;">
+        Yamaha Maju Jaya Abadi Ngawi
+    </div>
+    
+    <div style="font-size: 11px; color: var(--slate-gray); margin-top: 8px; line-height: 1.6;">
+        Senin - Sabtu (09.00 - 18.00 WIB)<br>
+        Melayani Cash, Kredit, dan Service Resmi.
+    </div>
+
+    <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee; font-size: 10px; color: #94a3b8; letter-spacing: 1px;">
+        © 2026 Build by <span style="font-weight: 700; color: var(--slate-gray);">MAJU JAYA ABADI</span>
+    </div>
+    
+    
+</footer>
 
     <div id="zoomModal" onclick="this.style.display='none'"><img id="zoomImg" style="max-width:100%; max-height:90vh; border-radius:8px; object-fit:contain;"></div>
 
-    <script>
-        const CONFIG = { API_URL: "https://sheetdb.io/api/v1/qjjio707oz536", WA_PHONE: "6285725493220" };
+<script>
+    const CONFIG = { 
+        API_URL: "https://sheetdb.io/api/v1/qjjio707oz536", 
+        WA_PHONE: "6285725493220" 
+    };
 
-        function updateRealTimeInfo() {
-            const now = new Date();
-            const isOpen = (now.getDay() >= 1 && now.getDay() <= 6) && (now.getHours() >= 9 && now.getHours() < 18);
-            document.getElementById('top-date').innerText = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-            document.getElementById('top-clock').innerText = now.toLocaleTimeString('id-ID', { hour12: false });
-            document.getElementById('top-status-badge').innerHTML = isOpen ? `<span class="dot-status dot-open"></span> BUKA` : `<span class="dot-status dot-closed"></span> TUTUP`;
+    // --- 1. LOGIKA WAKTU & STATUS TOKO ---
+    function updateRealTimeInfo() {
+        const now = new Date();
+        const day = now.getDay();
+        const hour = now.getHours();
+        const isOpen = (day >= 1 && day <= 6) && (hour >= 9 && hour < 18);
+
+        document.getElementById('top-date').innerText = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+        document.getElementById('top-clock').innerText = now.toLocaleTimeString('id-ID', { hour12: false });
+        
+        const badge = document.getElementById('top-status-badge');
+        badge.innerHTML = isOpen ? 
+            `<span class="dot-status dot-open"></span> <span style="font-size:10px;text-transform:uppercase;">Buka</span>` : 
+            `<span class="dot-status dot-closed"></span> <span style="font-size:10px;text-transform:uppercase;">Tutup</span>`;
+    }
+    setInterval(updateRealTimeInfo, 1000);
+
+    // --- 2. LOGIKA SLIDER OTOMATIS (Satu Fungsi untuk Semua) ---
+    function syncDots(scrollId, dotsId) {
+        const scroll = document.getElementById(scrollId);
+        const dots = document.getElementById(dotsId)?.children;
+        if(!scroll || !dots) return;
+        const idx = Math.round(scroll.scrollLeft / scroll.offsetWidth);
+        for(let i=0; i<dots.length; i++) dots[i].classList.toggle('active', i === idx);
+    }
+
+    function startAutoSlide(scrollId, interval) {
+        const scroll = document.getElementById(scrollId);
+        if(!scroll) return;
+        setInterval(() => {
+            let total = scroll.children.length;
+            let currentIdx = Math.round(scroll.scrollLeft / scroll.offsetWidth);
+            let nextIdx = (currentIdx + 1) % total;
+            scroll.scrollTo({ left: nextIdx * scroll.offsetWidth, behavior: 'smooth' });
+        }, interval);
+    }
+
+    // --- 3. DATA & RENDERING MOTOR ---
+    let rawData = [];
+    async function fetchMaster() {
+        try {
+            const res = await fetch(CONFIG.API_URL);
+            rawData = await res.json();
+            document.getElementById('loading').style.display = 'none';
+            renderMaster('promo');
+            
+            // Jalankan slide otomatis SETELAH data dimuat (untuk promo) dan halaman siap
+            startAutoSlide('promoScroll', 5000);
+            startAutoSlide('aboutScroll', 7000);
+        } catch (e) { 
+            document.getElementById('loading').innerText = "Gagal memuat data."; 
         }
-        setInterval(updateRealTimeInfo, 1000); updateRealTimeInfo();
+    }
 
-        let rawData = [];
-        async function fetchMaster() {
-            try {
-                const res = await fetch(CONFIG.API_URL);
-                rawData = await res.json();
-                document.getElementById('loading').style.display = 'none';
-                renderMaster('promo');
-            } catch (e) { document.getElementById('loading').innerText = "Gagal memuat data."; }
-        }
+    function renderMaster(filter = 'promo', query = '') {
+        const container = document.getElementById('mainContainer');
+        container.innerHTML = "";
+        const data = rawData.filter(m => {
+            if (query !== "") return m.nama?.toLowerCase().includes(query.toLowerCase());
+            if (filter === 'promo') return m.promo && m.promo.trim() !== "";
+            return m.cat?.toLowerCase().includes(filter.toLowerCase());
+        });
 
-        function renderMaster(filter = 'promo', query = '') {
-            const container = document.getElementById('mainContainer');
-            container.innerHTML = "";
-            const data = rawData.filter(m => {
-                if (query !== "") return m.nama?.toLowerCase().includes(query.toLowerCase());
-                if (filter === 'promo') return m.promo && m.promo.trim() !== "";
-                return m.cat?.toLowerCase().includes(filter.toLowerCase());
-            });
+        data.forEach((m, idx) => {
+            const imgs = [m.img, m.img1, m.img2, m.img3, m.img4, m.img5].filter(p => p && p.trim() !== "");
+            
+            let stokHTML = '';
+            const statusStok = m.stock?.toLowerCase().trim();
+            if(statusStok === 'ready') stokHTML = '<div class="stok-badge stok-ready"><i class="fas fa-check-circle"></i> Unit Ready</div>';
+            else if(statusStok === 'inden') stokHTML = '<div class="stok-badge stok-inden"><i class="fas fa-clock"></i> Unit Inden</div>';
+            else if(statusStok === 'kosong') stokHTML = '<div class="stok-badge stok-kosong"><i class="fas fa-times-circle"></i> Stok Kosong</div>';
 
-            data.forEach((m, idx) => {
-                const imgs = [m.img, m.img1, m.img2, m.img3, m.img4, m.img5].filter(p => p && p.trim() !== "");
-                
-                // LOGIKA STOK
-                let stokHTML = '';
-                const statusStok = m.stock?.toLowerCase().trim();
-                if(statusStok === 'ready') stokHTML = '<div class="stok-badge stok-ready"><i class="fas fa-check-circle"></i> Unit Ready Stock</div>';
-                else if(statusStok === 'inden') stokHTML = '<div class="stok-badge stok-inden"><i class="fas fa-clock"></i> Unit Inden / Pesan</div>';
-                else if(statusStok === 'kosong') stokHTML = '<div class="stok-badge stok-kosong"><i class="fas fa-times-circle"></i> Stok Habis</div>';
+            const promoTag = (m.promo && m.promo.trim() !== "") ? `<div class="promo-badge"><i class="fas fa-fire"></i> ${m.promo}</div>` : "";
 
-                const promoTag = (m.promo && m.promo.trim() !== "") ? `<div class="promo-badge"><i class="fas fa-fire"></i> ${m.promo}</div>` : "";
-
-                container.innerHTML += `
-                <div class="card">
-                    <div class="gallery">
-                        ${promoTag}
-                        <div class="img-counter" id="counter-${idx}">1 / ${imgs.length}</div>
-                        <div class="gallery-scroll" onscroll="const p=Math.round(this.scrollLeft/this.offsetWidth)+1; document.getElementById('counter-${idx}').innerText=p+' / ${imgs.length}'">
-                            ${imgs.map(p => `<div class="slide"><img src="${p}" onclick="openZoom(this.src)"></div>`).join('')}
+            container.innerHTML += `
+            <div class="card">
+                <div class="gallery">
+                    ${promoTag}
+                    <div class="img-counter" id="counter-${idx}">1 / ${imgs.length}</div>
+                    <div class="gallery-scroll" onscroll="const p=Math.round(this.scrollLeft/this.offsetWidth)+1; document.getElementById('counter-${idx}').innerText=p+' / ${imgs.length}'">
+                        ${imgs.map(p => `<div class="slide"><img src="${p}" onclick="openZoom(this.src)"></div>`).join('')}
+                    </div>
+                </div>
+                <div class="card-info">
+                    ${stokHTML}
+                    <h3 class="motor-name">${m.nama}</h3>
+                    <span class="new-price">${m.harga ? "Rp " + parseInt(m.harga.replace(/[^0-9]/g, "")).toLocaleString('id-ID') : '-'}</span>
+                    <details>
+                        <summary>Spesifikasi Produk</summary>
+                        <div class="spec-container">
+                            <div class="spec-item"><span class="spec-label">Mesin</span><span>:</span><span>${m.mesin || '-'}</span></div>
+                            <div class="spec-item"><span class="spec-label">Rangka</span><span>:</span><span>${m.rangka || '-'}</span></div>
+                            <div class="spec-item"><span class="spec-label">Dimensi</span><span>:</span><span>${m.dimensi || '-'}</span></div>
+                            <div class="spec-item"><span class="spec-label">Kelistrikan</span><span>:</span><span>${m.kelistrikan || '-'}</span></div>
                         </div>
-                    </div>
-                    <div class="card-info">
-                        ${stokHTML}
-                        <h3 class="motor-name">${m.nama}</h3>
-                        <span class="new-price">${m.harga ? "Rp " + parseInt(m.harga.replace(/[^0-9]/g, "")).toLocaleString('id-ID') : '-'}</span>
-                        
-                        <details>
-                            <summary>Spesifikasi Produk</summary>
-                            <div class="spec-container">
-                                <div class="spec-item"><span class="spec-label">Mesin</span><span>:</span><span>${m.mesin || '-'}</span></div>
-                                <div class="spec-item"><span class="spec-label">Rangka</span><span>:</span><span>${m.rangka || '-'}</span></div>
-                            </div>
-                        </details>
+                    </details>
+                    <a href="https://wa.me/${CONFIG.WA_PHONE}?text=Halo, unit ${m.nama} apakah ${m.stock}?" class="wa-btn"><i class="fab fa-whatsapp"></i> TANYA SALES</a>
+                </div>
+            </div>`;
+        });
+    }
 
-                        <a href="https://wa.me/${CONFIG.WA_PHONE}?text=Halo, unit ${m.nama} apakah ${m.stock}?" class="wa-btn"><i class="fab fa-whatsapp"></i> TANYA SALES</a>
-                    </div>
-                </div>`;
-            });
-        }
+    function openZoom(src) { document.getElementById('zoomImg').src = src; document.getElementById('zoomModal').style.display = 'flex'; }
+    const doSearch = () => renderMaster('promo', document.getElementById('mainSearch').value);
+    const doFilter = (c, b) => {
+        document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        renderMaster(c);
+    };
 
-        function openZoom(src) { document.getElementById('zoomImg').src = src; document.getElementById('zoomModal').style.display = 'flex'; }
-        const doSearch = () => renderMaster('promo', document.getElementById('mainSearch').value);
-        const doFilter = (c, b) => {
-            document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
-            b.classList.add('active');
-            renderMaster(c);
-        };
-        fetchMaster();
-    </script>
+    // Jalankan awal
+    updateRealTimeInfo();
+    fetchMaster();
+</script>
+
+
 </body>
 </html>

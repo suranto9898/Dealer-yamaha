@@ -8,8 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    
-    
     <style>
         :root {
             --yamaha-blue: #003399;
@@ -27,27 +25,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--bg-light); color: var(--dark-steel); line-height: 1.6; overflow-x: hidden; }
 
-.map-container {
-    width: 100%;
-    padding: 0 6% 30px;
-    background: var(--bg-light);
-}
-
-.map-wrapper {
-    width: 100%;
-    height: 300px;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-.map-wrapper iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
+        /* MAPS */
+        .map-container { width: 100%; padding: 0 6% 30px; background: var(--bg-light); }
+        .map-wrapper { width: 100%; height: 300px; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .map-wrapper iframe { width: 100%; height: 100%; border: 0; }
 
         /* TOP INFO BAR */
         .top-info-bar { background: #000; color: white; padding: 10px 6%; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 500; position: sticky; top: 0; z-index: 1100; }
@@ -70,17 +51,15 @@
         .stok-ready { background: var(--ready-bg); color: var(--ready-text); }
         .stok-inden { background: var(--inden-bg); color: var(--inden-text); }
         .stok-kosong { background: var(--kosong-bg); color: var(--kosong-text); }
-        
         .promo-badge { position: absolute; bottom: 12px; left: 12px; background: linear-gradient(45deg, var(--yamaha-red), #ff4d4d); color: white; padding: 5px 12px; border-radius: 6px; font-size: 10px; font-weight: 800; z-index: 20; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 5px; }
 
-        /* VIDEO SLIDER */
+        /* SLIDERS */
         .video-slider-container { width: 100%; position: relative; padding-bottom: 20px; }
         .video-slides-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 12px; padding: 0 8%; }
-        .video-slides-scroll::-webkit-scrollbar { display: none; }
         .video-slide-item { min-width: 85%; scroll-snap-align: center; flex-shrink: 0; }
         .video-wrapper-rapi { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
+        .video-wrapper-rapi iframe { width: 100%; height: 100%; border: 0; }
 
-        /* UNIVERSAL SLIDER */
         .section-label { padding: 25px 6% 15px; font-size: 13px; font-weight: 800; text-transform: uppercase; color: var(--slate-gray); letter-spacing: 1.5px; display: flex; align-items: center; gap: 10px; }
         .section-label::after { content: ""; height: 2px; background: #e2e8f0; flex: 1; }
         .custom-slider-container { width: 100%; height: 250px; position: relative; background: #eee; overflow: hidden; }
@@ -125,15 +104,17 @@
         .spec-container { padding: 0 15px 15px; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid #e2e8f0; padding-top: 10px; }
         .spec-item { display: grid; grid-template-columns: 80px 10px 1fr; font-size: 11px; color: var(--slate-gray); }
 
-        .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #128c7e; color: #fff; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: 700; }
+        .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #128c7e; color: #fff; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: 700; transition: 0.3s; }
+        .wa-btn:active { transform: scale(0.95); background: #075e54; }
+
         footer { background: var(--white); padding: 50px 6% 30px; border-top: 1px solid #e2e8f0; text-align: center; }
         .social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
         .social-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; }
         .fb { background: #1877F2; } .ig { background: linear-gradient(45deg, #f09433 0%, #bc1888 100%); }
 
         #zoomModal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; padding: 20px; }
+        
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
         @keyframes shine { 0% { background-position: -200%; } 100% { background-position: 200%; } }
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } }
     </style>
@@ -164,9 +145,9 @@
     <div class="section-label">Promo Bulan Ini :</div>
     <div class="custom-slider-container">
         <div class="slides-scroll" id="promoScroll" onscroll="syncDots('promoScroll', 'promoDots')">
-            <div class="slide-item"><img src="promo1.jpg" class="zoomable" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+1'"></div>
-            <div class="slide-item"><img src="promo2.jpg" class="zoomable" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+2'"></div>
-            <div class="slide-item"><img src="promo3.jpg" class="zoomable" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+3'"></div>
+            <div class="slide-item"><img src="promo1.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+1'"></div>
+            <div class="slide-item"><img src="promo2.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+2'"></div>
+            <div class="slide-item"><img src="promo3.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+3'"></div>
         </div>
         <div class="slider-dots" id="promoDots">
             <div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div>
@@ -195,8 +176,16 @@
     <div class="section-label">Galeri Dealer :</div>
     <div class="video-slider-container">  
         <div class="video-slides-scroll" id="videoScroll" onscroll="syncDots('videoScroll', 'videoDots')">
-            <div class="video-slide-item"><div class="video-wrapper-rapi"><iframe src="https://www.youtube.com/BZR8cRmiXJ0?si=sSHnXnFSWsFH9JQl" frameborder="0" allowfullscreen></iframe></div></div>
-            <div class="video-slide-item"><div class="video-wrapper-rapi"><iframe src="https://www.youtube.com/OrCtevW66cc?si=TBopzkkCNOJETCMJ" frameborder="0" allowfullscreen></iframe></div></div>
+            <div class="video-slide-item">
+                <div class="video-wrapper-rapi">
+                    <iframe src="https://www.youtube.com/embed/zXpXbKTvKac" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="video-slide-item">
+                <div class="video-wrapper-rapi">
+                    <iframe src="https://www.youtube.com/embed/e_6HIn3tN0I" allowfullscreen></iframe>
+                </div>
+            </div>
         </div> 
         <div class="slider-dots" id="videoDots"><div class="s-dot active"></div><div class="s-dot"></div></div>
     </div>
@@ -206,18 +195,17 @@
         <div class="slides-scroll" id="aboutScroll" onscroll="syncDots('aboutScroll', 'aboutDots')">
             <div class="slide-item"><img src="foto1.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+1'"></div>
             <div class="slide-item"><img src="foto2.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'"></div>
-            <div class="slide-item"><img src="foto3.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'"></div>
-            <div class="slide-item"><img src="foto4.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'"></div>
-            <div class="slide-item"><img src="foto5.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'"></div>
+            <div class="slide-item"><img src="foto3.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+3'"></div>
         </div>
         <div class="slider-dots" id="aboutDots"><div class="s-dot active"></div><div class="s-dot"></div></div>
     </div>
-<div class="section-label">Lokasi Dealer :</div>
-<div class="map-container">
-    <div class="map-wrapper">
-        <iframe src="https://www.google.com/maps/embed?pb=MASUKKAN_KODE_DARI_GOOGLE_MAPS_DISINI" allowfullscreen="" loading="lazy"></iframe>
+
+    <div class="section-label">Lokasi Dealer :</div>
+    <div class="map-container">
+        <div class="map-wrapper">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.914285741747!2d111.442!3d-7.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMjQnMDAuMCJTIDExMcKwMjYnMzEuMiJF!5e0!3m2!1sid!2sid!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
+        </div>
     </div>
-</div>
 
     <footer>
         <div class="social-links">
@@ -228,14 +216,11 @@
     </footer>
 
     <div id="zoomModal" onclick="this.style.display='none'"><img id="zoomImg" style="max-width:100%; max-height:90vh; border-radius:8px; object-fit:contain;"></div>
-    
-    <a href="https://wa.me/6285725493220" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <script>
     const CONFIG = { API_URL: "https://sheetdb.io/api/v1/qjjio707oz536", WA_PHONE: "6285725493220" };
     let rawData = [];
 
-    // --- UTILS ---
     function updateRealTimeInfo() {
         const now = new Date();
         const isOpen = (now.getDay() >= 1 && now.getDay() <= 6) && (now.getHours() >= 9 && now.getHours() < 18);
@@ -250,7 +235,7 @@
         const dots = document.getElementById(dotsId)?.children;
         if(!scroll || !dots) return;
         const idx = Math.round(scroll.scrollLeft / scroll.offsetWidth);
-        for(let i=0; i<dots.length; i++) dots[i].classList.toggle('active', i === idx);
+        for(let i=0; i<dots.length; i++) if(dots[i]) dots[i].classList.toggle('active', i === idx);
     }
 
     function startAutoSlide(scrollId, interval) {
@@ -264,7 +249,6 @@
         }, interval);
     }
 
-    // --- DATA ---
     async function fetchMaster() {
         try {
             const res = await fetch(CONFIG.API_URL);
@@ -312,6 +296,10 @@
                             <div class="spec-item"><span class="spec-label">Dimensi</span><span>:</span><span>${m.dimensi || '-'}</span></div>
                         </div>
                     </details>
+                    <a href="https://wa.me/${CONFIG.WA_PHONE}?text=Halo Sales Maju Jaya Abadi, saya ingin tanya unit ${m.nama}" class="wa-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> TANYA SALES
+                    </a>
+                </div>
             </div>`;
         });
     }

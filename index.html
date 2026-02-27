@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
+    
+    
     <style>
         :root {
             --yamaha-blue: #003399;
@@ -17,7 +19,6 @@
             --bg-light: #f8fafc;
             --white: #ffffff;
             --status-ok: #00ff88;
-            /* Warna Label Stok */
             --ready-bg: #dcfce7; --ready-text: #166534;
             --inden-bg: #fef9c3; --inden-text: #854d0e;
             --kosong-bg: #fee2e2; --kosong-text: #991b1b;
@@ -25,6 +26,28 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--bg-light); color: var(--dark-steel); line-height: 1.6; overflow-x: hidden; }
+
+.map-container {
+    width: 100%;
+    padding: 0 6% 30px;
+    background: var(--bg-light);
+}
+
+.map-wrapper {
+    width: 100%;
+    height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
 
         /* TOP INFO BAR */
         .top-info-bar { background: #000; color: white; padding: 10px 6%; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 500; position: sticky; top: 0; z-index: 1100; }
@@ -42,215 +65,50 @@
         .hero h1 { font-size: 26px; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
         .dealer-name-animate { display: inline-block; background: linear-gradient(90deg, #fff, #93c5fd, #fff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; }
 
-        /* STOK BADGE STYLE */
-        .stok-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
+        /* BADGES */
+        .stok-badge { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; }
         .stok-ready { background: var(--ready-bg); color: var(--ready-text); }
         .stok-inden { background: var(--inden-bg); color: var(--inden-text); }
         .stok-kosong { background: var(--kosong-bg); color: var(--kosong-text); }
-
-/* Styling khusus untuk slider video agar lebih cantik */
-/* CSS Video Galeri yang Sudah Disederhanakan */
-.video-slider-container {
-    width: 100%;
-    position: relative;
-    padding-bottom: 20px;
-    background: var(--bg-light);
-}
-
-.video-slides-scroll {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    gap: 12px;
-    padding: 0 8%; /* Memberi ruang di kiri-kanan agar video terlihat di tengah */
-}
-
-.video-slides-scroll::-webkit-scrollbar { display: none; }
-
-.video-slide-item {
-    min-width: 85%;
-    scroll-snap-align: center; /* Memastikan video berhenti tepat di tengah */
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-}
-
-
-.video-wrapper-rapi {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000;
-    border-radius: 16px; /* Lebih bulat agar modern */
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    border: 1px solid #e2e8f0;
-}
-
-
-.slider-dots {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    padding: 10px 0;
-}
-.s-dot {
-    width: 6px;
-    height: 6px;
-    background: #cbd5e1;
-    border-radius: 50%;
-    transition: 0.3s;
-}
-.s-dot.active {
-    background: var(--yamaha-blue);
-    width: 18px;
-    border-radius: 4px;
-}
-
-/* FLOATING WA BUTTON */
-.floating-wa {
-    position: fixed;
-    bottom: 25px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background-color: #25d366;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    z-index: 2000;
-    text-decoration: none;
-    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    animation: pulse-green 2s infinite;
-}
-
-.floating-wa:hover {
-    transform: scale(1.1);
-}
-
-@keyframes pulse-green {
-    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-}
-
-
-
-        /* UNIVERSAL SLIDER STYLES */
-        .section-label { padding: 25px 6% 15px; background: var(--bg-light); font-size: 13px; font-weight: 800; text-transform: uppercase; color: var(--slate-gray); letter-spacing: 1.5px; display: flex; align-items: center; gap: 10px; }
-        .section-label::after { content: ""; height: 2px; background: #e2e8f0; flex: 1; }
-
-        .custom-slider-container { width: 100%; height: 250px; position: relative; background: #eee; overflow: hidden; }
-        .slides-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; height: 100%; scrollbar-width: none; scroll-behavior: smooth; }
-        .slide-item { min-width: 100%; height: 100%; scroll-snap-align: start; flex-shrink: 0; }
-        .slide-item img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; }
         
-        /* PROMO BADGE - DIPINDAH KE BAWAH GAMBAR */
-        .promo-badge {
-            position: absolute;
-            bottom: 12px;
-            left: 12px;
-            background: linear-gradient(45deg, var(--yamaha-red), #ff4d4d);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 10px;
-            font-weight: 800;
-            z-index: 20;
-            text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center; gap: 5px;
-        }
+        .promo-badge { position: absolute; bottom: 12px; left: 12px; background: linear-gradient(45deg, var(--yamaha-red), #ff4d4d); color: white; padding: 5px 12px; border-radius: 6px; font-size: 10px; font-weight: 800; z-index: 20; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 5px; }
 
-        /* CONTROLS & GRID */
+        /* VIDEO SLIDER */
+        .video-slider-container { width: 100%; position: relative; padding-bottom: 20px; }
+        .video-slides-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 12px; padding: 0 8%; }
+        .video-slides-scroll::-webkit-scrollbar { display: none; }
+        .video-slide-item { min-width: 85%; scroll-snap-align: center; flex-shrink: 0; }
+        .video-wrapper-rapi { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
+
+        /* UNIVERSAL SLIDER */
+        .section-label { padding: 25px 6% 15px; font-size: 13px; font-weight: 800; text-transform: uppercase; color: var(--slate-gray); letter-spacing: 1.5px; display: flex; align-items: center; gap: 10px; }
+        .section-label::after { content: ""; height: 2px; background: #e2e8f0; flex: 1; }
+        .custom-slider-container { width: 100%; height: 250px; position: relative; background: #eee; overflow: hidden; }
+        .slides-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; height: 100%; scrollbar-width: none; }
+        .slide-item { min-width: 100%; height: 100%; scroll-snap-align: start; flex-shrink: 0; }
+        .slide-item img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .slider-dots { display: flex; justify-content: center; gap: 6px; padding: 10px 0; }
+        .s-dot { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; transition: 0.3s; }
+        .s-dot.active { background: var(--yamaha-blue); width: 18px; border-radius: 4px; }
+
+        /* CONTROLS */
         .controls { position: sticky; top: 120px; z-index: 990; background: var(--bg-light); padding: 20px 0 10px; }
         .search-box { padding: 0 6% 15px; }
         .search-inner { background: var(--white); border-radius: 12px; display: flex; align-items: center; padding: 0 18px; border: 1px solid #e2e8f0; }
         .search-inner input { width: 100%; border: none; padding: 14px 10px; outline: none; font-size: 14px; }
         .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 0 6% 15px; scrollbar-width: none; }
-        .tab-btn { padding: 10px 24px; border: 1px solid #e2e8f0; background: var(--white); border-radius: 8px; font-size: 12px; font-weight: 700; color: var(--slate-gray); white-space: nowrap; cursor: pointer; }
+        .tab-btn { padding: 10px 24px; border: 1px solid #e2e8f0; background: var(--white); border-radius: 8px; font-size: 12px; font-weight: 700; color: var(--slate-gray); white-space: nowrap; }
         .tab-btn.active { background: var(--yamaha-blue); color: var(--white); border-color: var(--yamaha-blue); }
 
-/* 3 PILAR KEPERCAYAAN - VERSI RAPI */
-.trust-icons { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 10px; 
-    padding: 25px 4%; /* Padding samping diperkecil agar ruang lebih luas */
-    background: var(--dark-steel);
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
+        .trust-icons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 25px 4%; background: var(--dark-steel); }
+        .trust-item { text-align: center; color: white; display: flex; flex-direction: column; align-items: center; }
+        .trust-item i { font-size: 24px; margin-bottom: 10px; color: #fff; }
+        .trust-item span { font-size: 9px; font-weight: 700; text-transform: uppercase; color: #cbd5e1; }
 
-.trust-item { 
-    text-align: center; 
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Memastikan ikon & teks sejajar di tengah */
-    justify-content: center;
-}
-
-.trust-item i { 
-    font-size: 24px; /* Sedikit diperbesar agar ikon menonjol */
-    color: #fff; 
-    margin-bottom: 10px; 
-    height: 30px; /* Memberi tinggi tetap agar teks di bawahnya sejajar horizontal */
-    display: flex;
-    align-items: center;
-}
-
-.trust-item span { 
-    font-size: 9px; /* Ukuran teks dioptimalkan untuk mobile */
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.8px; 
-    line-height: 1.3;
-    color: #cbd5e1; /* Warna abu-abu terang agar lebih elegan */
-}
-
-/* SOCIAL MEDIA FOOTER */
-.social-links { 
-    display: flex; 
-    justify-content: center; 
-    gap: 15px; 
-    margin-bottom: 20px; 
-}
-
-.social-icon { 
-    width: 45px; 
-    height: 45px; 
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    color: white; 
-    text-decoration: none; 
-    font-size: 20px; 
-    transition: 0.3s;
-}
-
-.social-icon:hover {
-    transform: translateY(-5px); /* Efek melompat saat disentuh */
-    opacity: 0.9;
-}
-
-.fb { background: #1877F2; } /* Warna Biru Facebook */
-.ig { background: linear-gradient(45deg, #f09433 0%, #bc1888 100%); } /* Gradasi Instagram */
-
+        /* GRID & CARD */
         .grid { display: grid; grid-template-columns: 1fr; gap: 30px; padding: 15px 6% 50px; }
-        .card { background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; transition: 0.3s; position: relative; }
+        .card { background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; position: relative; }
         .gallery { position: relative; height: 260px; background: #fff; }
         .gallery-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; height: 100%; scrollbar-width: none; }
         .slide { min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 20px; scroll-snap-align: start; }
@@ -258,20 +116,24 @@
         .img-counter { position: absolute; bottom: 12px; right: 12px; background: rgba(0,0,0,0.7); color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 10px; font-weight: 700; }
 
         .card-info { padding: 24px; }
-        .motor-name { font-size: 20px; font-weight: 800; color: var(--dark-steel); margin-bottom: 4px; }
+        .motor-name { font-size: 20px; font-weight: 800; color: var(--dark-steel); }
         .new-price { font-size: 18px; font-weight: 600; color: var(--yamaha-red); display: block; margin-bottom: 12px; }
 
-        details { background: #f1f5f9; border-radius: 10px; margin-bottom: 15px; overflow: hidden; border: 1px solid #e2e8f0; }
-        summary { padding: 12px 15px; font-size: 12px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--dark-steel); }
+        details { background: #f1f5f9; border-radius: 10px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
+        summary { padding: 12px 15px; font-size: 12px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
         summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 10px; }
         .spec-container { padding: 0 15px 15px; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid #e2e8f0; padding-top: 10px; }
         .spec-item { display: grid; grid-template-columns: 80px 10px 1fr; font-size: 11px; color: var(--slate-gray); }
 
         .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #128c7e; color: #fff; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: 700; }
-
         footer { background: var(--white); padding: 50px 6% 30px; border-top: 1px solid #e2e8f0; text-align: center; }
+        .social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
+        .social-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; }
+        .fb { background: #1877F2; } .ig { background: linear-gradient(45deg, #f09433 0%, #bc1888 100%); }
+
         #zoomModal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; padding: 20px; }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
         @keyframes shine { 0% { background-position: -200%; } 100% { background-position: 200%; } }
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } }
     </style>
@@ -291,9 +153,6 @@
     <div class="hero">
         <h1>Pusat Motor Yamaha <br><span class="dealer-name-animate">Maju Jaya Abadi Ngawi</span></h1>
         <p>Layanan profesional dengan pilihan unit terlengkap di Ngawi.</p>
-        <div style="margin-top: 15px; font-size: 12px; color: #93c5fd; font-weight: 600;">
-            <i class="far fa-clock"></i> Senin - Sabtu: 09.00 - 18.00 | <span style="color: #ff4d4d;">Minggu: Tutup</span>
-        </div>
     </div>
 
     <div class="trust-icons">
@@ -304,23 +163,15 @@
 
     <div class="section-label">Promo Bulan Ini :</div>
     <div class="custom-slider-container">
-    <div class="slides-scroll" id="promoScroll" onscroll="syncDots('promoScroll', 'promoDots')">
-        <div class="slide-item"><img src="promo1.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+1'"></div>
-        <div class="slide-item"><img src="promo2.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+2'"></div>
-        <div class="slide-item"><img src="promo3.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+3'"></div>
-        <div class="slide-item"><img src="promo4.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+4'"></div>
-        <div class="slide-item"><img src="promo5.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+5'"></div>
+        <div class="slides-scroll" id="promoScroll" onscroll="syncDots('promoScroll', 'promoDots')">
+            <div class="slide-item"><img src="promo1.jpg" class="zoomable" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+1'"></div>
+            <div class="slide-item"><img src="promo2.jpg" class="zoomable" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+2'"></div>
+            <div class="slide-item"><img src="promo3.jpg" class="zoomable" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+3'"></div>
+        </div>
+        <div class="slider-dots" id="promoDots">
+            <div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div>
+        </div>
     </div>
-    
-    <div class="slider-dots" id="promoDots">
-        <div class="s-dot active"></div>
-        <div class="s-dot"></div>
-        <div class="s-dot"></div>
-        <div class="s-dot"></div>
-        <div class="s-dot"></div>
-    </div>
-</div>
-
 
     <div class="controls">
         <div class="search-box">
@@ -335,115 +186,65 @@
             <button class="tab-btn" onclick="doFilter('classy', this)">Classy</button>
             <button class="tab-btn" onclick="doFilter('matic', this)">Matic</button>
             <button class="tab-btn" onclick="doFilter('sport', this)">Sport</button>
-            <button class="tab-btn" onclick="doFilter('moped', this)">Moped</button> 
         </div>
     </div>
-    
-    
 
     <div id="loading" style="text-align: center; padding: 50px;"><i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--yamaha-blue);"></i></div>
     <div class="grid" id="mainContainer"></div>
-          <div class="section-label">Video Galeri :</div>
-<div class="video-slider-container">  
-    <div class="video-slides-scroll" id="videoScroll" onscroll="syncDots('videoScroll', 'videoDots')">
-        
-        <div class="video-slide-item">
-            <div class="video-wrapper-rapi">
-                <iframe width="100%" height="100%" 
-                        src="https://youtu.be/BZR8cRmiXJ0?si=sSHnXnFSWsFH9JQl" 
-                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
 
-        <div class="video-slide-item">
-            <div class="video-wrapper-rapi">
-                <iframe width="100%" height="100%" 
-                        src="https://youtu.be/OrCtevW66cc?si=TBopzkkCNOJETCMJ" 
-                        frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-
-    </div> 
-    
-    <div class="slider-dots" id="videoDots">
-        <div class="s-dot active"></div>
-        <div class="s-dot"></div>
+    <div class="section-label">Galeri Dealer :</div>
+    <div class="video-slider-container">  
+        <div class="video-slides-scroll" id="videoScroll" onscroll="syncDots('videoScroll', 'videoDots')">
+            <div class="video-slide-item"><div class="video-wrapper-rapi"><iframe src="https://www.youtube.com/BZR8cRmiXJ0?si=sSHnXnFSWsFH9JQl" frameborder="0" allowfullscreen></iframe></div></div>
+            <div class="video-slide-item"><div class="video-wrapper-rapi"><iframe src="https://www.youtube.com/OrCtevW66cc?si=TBopzkkCNOJETCMJ" frameborder="0" allowfullscreen></iframe></div></div>
+        </div> 
+        <div class="slider-dots" id="videoDots"><div class="s-dot active"></div><div class="s-dot"></div></div>
     </div>
-</div>
 
-
-
-<div class="section-label">Tentang Kami :</div>
-<div class="custom-slider-container">
-    <div class="slides-scroll" id="aboutScroll" onscroll="syncDots('aboutScroll', 'aboutDots')">
-        <div class="slide-item"><img src="foto1.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+1'"></div>
-        <div class="slide-item"><img src="foto2.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'"></div>
-        <div class="slide-item"><img src="foto3.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+3'"></div>
-        <div class="slide-item"><img src="foto4.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+4'"></div>
-        <div class="slide-item"><img src="foto5.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+5'"></div>
+    <div class="section-label">Tentang Kami :</div>
+    <div class="custom-slider-container">
+        <div class="slides-scroll" id="aboutScroll" onscroll="syncDots('aboutScroll', 'aboutDots')">
+            <div class="slide-item"><img src="foto1.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+1'"></div>
+            <div class="slide-item"><img src="foto2.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'"></div>
+            <div class="slide-item"><img src="foto3.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'"></div>
+            <div class="slide-item"><img src="foto4.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'"></div>
+            <div class="slide-item"><img src="foto5.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'"></div>
+        </div>
+        <div class="slider-dots" id="aboutDots"><div class="s-dot active"></div><div class="s-dot"></div></div>
     </div>
-    <div class="slider-dots" id="aboutDots">
-        <div class="s-dot active"></div>
-        <div class="s-dot"></div>
-        <div class="s-dot"></div>
-        <div class="s-dot"></div>
-        <div class="s-dot"></div>
+<div class="section-label">Lokasi Dealer :</div>
+<div class="map-container">
+    <div class="map-wrapper">
+        <iframe src="https://www.google.com/maps/embed?pb=MASUKKAN_KODE_DARI_GOOGLE_MAPS_DISINI" allowfullscreen="" loading="lazy"></iframe>
     </div>
 </div>
 
     <footer>
-    
-    <div class="social-links">
-        <a href="https://facebook.com/USERNAME_ANDA" target="_blank" class="social-icon fb">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://instagram.com/USERNAME_ANDA" target="_blank" class="social-icon ig">
-            <i class="fab fa-instagram"></i>
-        </a>
-    </div>
-
-    <div style="font-weight: 800; color: var(--dark-steel); text-transform: uppercase; font-size: 13px;">
-        Yamaha Maju Jaya Abadi Ngawi
-    </div>
-    
-    <div style="font-size: 11px; color: var(--slate-gray); margin-top: 8px; line-height: 1.6;">
-        Senin - Sabtu (09.00 - 18.00 WIB)<br>
-        Melayani Cash, Kredit, dan Service Resmi.
-    </div>
-
-    <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee; font-size: 10px; color: #94a3b8; letter-spacing: 1px;">
-        © 2026 Build by <span style="font-weight: 700; color: var(--slate-gray);">MAJU JAYA ABADI</span>
-    </div>
-    
-    
-</footer>
+        <div class="social-links">
+            <a href="#" class="social-icon fb"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon ig"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div style="font-weight: 800; color: var(--dark-steel); text-transform: uppercase; font-size: 13px;">Yamaha Maju Jaya Abadi Ngawi</div>
+    </footer>
 
     <div id="zoomModal" onclick="this.style.display='none'"><img id="zoomImg" style="max-width:100%; max-height:90vh; border-radius:8px; object-fit:contain;"></div>
+    
+    <a href="https://wa.me/6285725493220" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <script>
-    const CONFIG = { 
-        API_URL: "https://sheetdb.io/api/v1/qjjio707oz536", 
-        WA_PHONE: "6285725493220" 
-    };
+    const CONFIG = { API_URL: "https://sheetdb.io/api/v1/qjjio707oz536", WA_PHONE: "6285725493220" };
+    let rawData = [];
 
-    // --- 1. LOGIKA WAKTU & STATUS TOKO ---
+    // --- UTILS ---
     function updateRealTimeInfo() {
         const now = new Date();
-        const day = now.getDay();
-        const hour = now.getHours();
-        const isOpen = (day >= 1 && day <= 6) && (hour >= 9 && hour < 18);
-
+        const isOpen = (now.getDay() >= 1 && now.getDay() <= 6) && (now.getHours() >= 9 && now.getHours() < 18);
         document.getElementById('top-date').innerText = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
         document.getElementById('top-clock').innerText = now.toLocaleTimeString('id-ID', { hour12: false });
-        
-        const badge = document.getElementById('top-status-badge');
-        badge.innerHTML = isOpen ? 
-            `<span class="dot-status dot-open"></span> <span style="font-size:10px;text-transform:uppercase;">Buka</span>` : 
-            `<span class="dot-status dot-closed"></span> <span style="font-size:10px;text-transform:uppercase;">Tutup</span>`;
+        document.getElementById('top-status-badge').innerHTML = isOpen ? 
+            `<span class="dot-status dot-open"></span> BUKA` : `<span class="dot-status dot-closed"></span> TUTUP`;
     }
-    setInterval(updateRealTimeInfo, 1000);
 
-    // --- 2. LOGIKA SLIDER OTOMATIS (Satu Fungsi untuk Semua) ---
     function syncDots(scrollId, dotsId) {
         const scroll = document.getElementById(scrollId);
         const dots = document.getElementById(dotsId)?.children;
@@ -456,32 +257,25 @@
         const scroll = document.getElementById(scrollId);
         if(!scroll) return;
         setInterval(() => {
-            let total = scroll.children.length;
-            let currentIdx = Math.round(scroll.scrollLeft / scroll.offsetWidth);
-            let nextIdx = (currentIdx + 1) % total;
-            scroll.scrollTo({ left: nextIdx * scroll.offsetWidth, behavior: 'smooth' });
+            const total = scroll.children.length;
+            const current = Math.round(scroll.scrollLeft / scroll.offsetWidth);
+            const next = (current + 1) % total;
+            scroll.scrollTo({ left: next * scroll.offsetWidth, behavior: 'smooth' });
         }, interval);
     }
 
-    // --- 3. DATA & RENDERING MOTOR ---
-    let rawData = [];
+    // --- DATA ---
     async function fetchMaster() {
         try {
             const res = await fetch(CONFIG.API_URL);
             rawData = await res.json();
             document.getElementById('loading').style.display = 'none';
             renderMaster('promo');
-            
-            // Jalankan slide otomatis SETELAH data dimuat (untuk promo) dan halaman siap
             startAutoSlide('promoScroll', 5000);
+            startAutoSlide('videoScroll', 8000);
             startAutoSlide('aboutScroll', 7000);
-            startAutoSlide('videoScroll', 8000); // Video akan bergeser setiap 8 detik
-
-        } catch (e) { 
-            document.getElementById('loading').innerText = "Gagal memuat data."; 
-        }
+        } catch (e) { document.getElementById('loading').innerText = "Gagal memuat data."; }
     }
-
 
     function renderMaster(filter = 'promo', query = '') {
         const container = document.getElementById('mainContainer');
@@ -494,13 +288,8 @@
 
         data.forEach((m, idx) => {
             const imgs = [m.img, m.img1, m.img2, m.img3, m.img4, m.img5].filter(p => p && p.trim() !== "");
-            
-            let stokHTML = '';
-            const statusStok = m.stock?.toLowerCase().trim();
-            if(statusStok === 'ready') stokHTML = '<div class="stok-badge stok-ready"><i class="fas fa-check-circle"></i> Unit Ready</div>';
-            else if(statusStok === 'inden') stokHTML = '<div class="stok-badge stok-inden"><i class="fas fa-clock"></i> Unit Inden</div>';
-            else if(statusStok === 'kosong') stokHTML = '<div class="stok-badge stok-kosong"><i class="fas fa-times-circle"></i> Stok Kosong</div>';
-
+            const status = m.stock?.toLowerCase().trim();
+            const badgeClass = status === 'ready' ? 'stok-ready' : (status === 'inden' ? 'stok-inden' : 'stok-kosong');
             const promoTag = (m.promo && m.promo.trim() !== "") ? `<div class="promo-badge"><i class="fas fa-fire"></i> ${m.promo}</div>` : "";
 
             container.innerHTML += `
@@ -508,25 +297,21 @@
                 <div class="gallery">
                     ${promoTag}
                     <div class="img-counter" id="counter-${idx}">1 / ${imgs.length}</div>
-                    <div class="gallery-scroll" onscroll="const p=Math.round(this.scrollLeft/this.offsetWidth)+1; document.getElementById('counter-${idx}').innerText=p+' / ${imgs.length}'">
+                    <div class="gallery-scroll" onscroll="syncDots('gallery-scroll', 'counter-${idx}')">
                         ${imgs.map(p => `<div class="slide"><img src="${p}" onclick="openZoom(this.src)"></div>`).join('')}
                     </div>
                 </div>
                 <div class="card-info">
-                    ${stokHTML}
+                    <div class="stok-badge ${badgeClass}">${m.stock || 'Cek Stok'}</div>
                     <h3 class="motor-name">${m.nama}</h3>
                     <span class="new-price">${m.harga ? "Rp " + parseInt(m.harga.replace(/[^0-9]/g, "")).toLocaleString('id-ID') : '-'}</span>
                     <details>
                         <summary>Spesifikasi Produk</summary>
                         <div class="spec-container">
                             <div class="spec-item"><span class="spec-label">Mesin</span><span>:</span><span>${m.mesin || '-'}</span></div>
-                            <div class="spec-item"><span class="spec-label">Rangka</span><span>:</span><span>${m.rangka || '-'}</span></div>
                             <div class="spec-item"><span class="spec-label">Dimensi</span><span>:</span><span>${m.dimensi || '-'}</span></div>
-                            <div class="spec-item"><span class="spec-label">Kelistrikan</span><span>:</span><span>${m.kelistrikan || '-'}</span></div>
                         </div>
                     </details>
-                    <a href="https://wa.me/${CONFIG.WA_PHONE}?text=Halo, unit ${m.nama} apakah ${m.stock}?" class="wa-btn"><i class="fab fa-whatsapp"></i> TANYA SALES</a>
-                </div>
             </div>`;
         });
     }
@@ -539,13 +324,9 @@
         renderMaster(c);
     };
 
-    // Jalankan awal
     updateRealTimeInfo();
+    setInterval(updateRealTimeInfo, 1000);
     fetchMaster();
 </script>
-
-<a href="https://wa.me/6285725493220?text=Halo Maju Jaya Abadi, saya ingin tanya stok motor..." class="floating-wa" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
 </body>
 </html>

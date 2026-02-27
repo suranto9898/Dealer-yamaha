@@ -56,6 +56,97 @@
         .stok-inden { background: var(--inden-bg); color: var(--inden-text); }
         .stok-kosong { background: var(--kosong-bg); color: var(--kosong-text); }
 
+/* Styling khusus untuk slider video agar lebih cantik */
+/* CSS Video Galeri yang Sudah Disederhanakan */
+.video-slider-container {
+    width: 100%;
+    position: relative;
+    padding-bottom: 20px;
+    background: var(--bg-light);
+}
+
+.video-slides-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    gap: 12px;
+    padding: 0 8%; /* Memberi ruang di kiri-kanan agar video terlihat di tengah */
+}
+
+.video-slides-scroll::-webkit-scrollbar { display: none; }
+
+.video-slide-item {
+    min-width: 85%;
+    scroll-snap-align: center; /* Memastikan video berhenti tepat di tengah */
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+
+.video-wrapper-rapi {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 16px; /* Lebih bulat agar modern */
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border: 1px solid #e2e8f0;
+}
+
+
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 0;
+}
+.s-dot {
+    width: 6px;
+    height: 6px;
+    background: #cbd5e1;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+.s-dot.active {
+    background: var(--yamaha-blue);
+    width: 18px;
+    border-radius: 4px;
+}
+
+/* FLOATING WA BUTTON */
+.floating-wa {
+    position: fixed;
+    bottom: 25px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 2000;
+    text-decoration: none;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: pulse-green 2s infinite;
+}
+
+.floating-wa:hover {
+    transform: scale(1.1);
+}
+
+@keyframes pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+
+
         /* UNIVERSAL SLIDER STYLES */
         .section-label { padding: 25px 6% 15px; background: var(--bg-light); font-size: 13px; font-weight: 800; text-transform: uppercase; color: var(--slate-gray); letter-spacing: 1.5px; display: flex; align-items: center; gap: 10px; }
         .section-label::after { content: ""; height: 2px; background: #e2e8f0; flex: 1; }
@@ -252,6 +343,36 @@
 
     <div id="loading" style="text-align: center; padding: 50px;"><i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--yamaha-blue);"></i></div>
     <div class="grid" id="mainContainer"></div>
+          <div class="section-label">Video Galeri :</div>
+<div class="video-slider-container">  
+    <div class="video-slides-scroll" id="videoScroll" onscroll="syncDots('videoScroll', 'videoDots')">
+        
+        <div class="video-slide-item">
+            <div class="video-wrapper-rapi">
+                <iframe width="100%" height="100%" 
+                        src="https://youtu.be/BZR8cRmiXJ0?si=sSHnXnFSWsFH9JQl" 
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="video-slide-item">
+            <div class="video-wrapper-rapi">
+                <iframe width="100%" height="100%" 
+                        src="https://youtu.be/OrCtevW66cc?si=TBopzkkCNOJETCMJ" 
+                        frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+    </div> 
+    
+    <div class="slider-dots" id="videoDots">
+        <div class="s-dot active"></div>
+        <div class="s-dot"></div>
+    </div>
+</div>
+
+
+
 <div class="section-label">Tentang Kami :</div>
 <div class="custom-slider-container">
     <div class="slides-scroll" id="aboutScroll" onscroll="syncDots('aboutScroll', 'aboutDots')">
@@ -354,10 +475,13 @@
             // Jalankan slide otomatis SETELAH data dimuat (untuk promo) dan halaman siap
             startAutoSlide('promoScroll', 5000);
             startAutoSlide('aboutScroll', 7000);
+            startAutoSlide('videoScroll', 8000); // Video akan bergeser setiap 8 detik
+
         } catch (e) { 
             document.getElementById('loading').innerText = "Gagal memuat data."; 
         }
     }
+
 
     function renderMaster(filter = 'promo', query = '') {
         const container = document.getElementById('mainContainer');
@@ -420,6 +544,8 @@
     fetchMaster();
 </script>
 
-
+<a href="https://wa.me/6285725493220?text=Halo Maju Jaya Abadi, saya ingin tanya stok motor..." class="floating-wa" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
 </body>
 </html>

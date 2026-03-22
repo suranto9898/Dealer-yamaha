@@ -8,7 +8,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    
     <style>
         :root {
             --yamaha-blue: #003399;
@@ -78,7 +77,7 @@
         .search-inner { background: var(--white); border-radius: 12px; display: flex; align-items: center; padding: 0 18px; border: 1px solid #e2e8f0; }
         .search-inner input { width: 100%; border: none; padding: 14px 10px; outline: none; font-size: 14px; }
         .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 0 6% 15px; scrollbar-width: none; }
-        .tab-btn { padding: 10px 24px; border: 1px solid #e2e8f0; background: var(--white); border-radius: 8px; font-size: 12px; font-weight: 700; color: var(--slate-gray); white-space: nowrap; }
+        .tab-btn { padding: 10px 24px; border: 1px solid #e2e8f0; background: var(--white); border-radius: 8px; font-size: 12px; font-weight: 700; color: var(--slate-gray); white-space: nowrap; cursor: pointer;}
         .tab-btn.active { background: var(--yamaha-blue); color: var(--white); border-color: var(--yamaha-blue); }
 
         .trust-icons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 25px 4%; background: var(--dark-steel); }
@@ -100,7 +99,7 @@
         .new-price { font-size: 18px; font-weight: 600; color: var(--yamaha-red); display: block; margin-bottom: 12px; }
 
         details { background: #f1f5f9; border-radius: 10px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
-        summary { padding: 12px 15px; font-size: 12px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary { padding: 12px 15px; font-size: 12px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; outline: none; }
         summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 10px; }
         .spec-container { padding: 0 15px 15px; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid #e2e8f0; padding-top: 10px; }
         .spec-item { display: grid; grid-template-columns: 80px 10px 1fr; font-size: 11px; color: var(--slate-gray); }
@@ -110,7 +109,7 @@
 
         footer { background: var(--white); padding: 50px 6% 30px; border-top: 1px solid #e2e8f0; text-align: center; }
         .social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
-        .social-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; }
+        .social-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none; }
         .fb { background: #1877F2; } .ig { background: linear-gradient(45deg, #f09433 0%, #bc1888 100%); }
 
         #zoomModal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; padding: 20px; }
@@ -145,12 +144,12 @@
 
     <div class="section-label">Promo Bulan Ini :</div>
     <div class="custom-slider-container">
-        <div class="slides-scroll" id="promoScroll" onscroll="syncDots('promoScroll', 'promoDots')">
+        <div class="slides-scroll" id="promoScroll" onscroll="syncDots(this, 'promoDots')">
             <div class="slide-item"><img src="promo1.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+1'"></div>
             <div class="slide-item"><img src="promo2.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+2'"></div>
             <div class="slide-item"><img src="promo3.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+3'"></div>
-            <div class="slide-item"><img src="promo4.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+3'"></div>
-            <div class="slide-item"><img src="promo5.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+3'"></div>
+            <div class="slide-item"><img src="promo4.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+4'"></div>
+            <div class="slide-item"><img src="promo5.jpg" onerror="this.src='https://via.placeholder.com/800x400?text=Promo+5'"></div>
         </div>
         <div class="slider-dots" id="promoDots">
             <div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div>
@@ -179,7 +178,7 @@
 
     <div class="section-label">Galeri Video :</div>
     <div class="video-slider-container">  
-        <div class="video-slides-scroll" id="videoScroll" onscroll="syncDots('videoScroll', 'videoDots')">
+        <div class="video-slides-scroll" id="videoScroll" onscroll="syncDots(this, 'videoDots')">
             <div class="video-slide-item">
                 <div class="video-wrapper-rapi">
                     <iframe src="https://www.youtube-nocookie.com/embed/zXpXbKTvKac" allowfullscreen></iframe>
@@ -196,33 +195,32 @@
 
     <div class="section-label">Tentang Kami :</div>
     <div class="custom-slider-container">
-        <div class="slides-scroll" id="aboutScroll" onscroll="syncDots('aboutScroll', 'aboutDots')">
+        <div class="slides-scroll" id="aboutScroll" onscroll="syncDots(this, 'aboutDots')">
             <div class="slide-item"><img src="foto1.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+1'"></div>
             <div class="slide-item"><img src="foto2.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+2'"></div>
             <div class="slide-item"><img src="foto3.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+3'"></div>
-            <div class="slide-item"><img src="foto4.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+3'"></div>
-            <div class="slide-item"><img src="foto5.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+3'"></div>
+            <div class="slide-item"><img src="foto4.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+4'"></div>
+            <div class="slide-item"><img src="foto5.jpg" onclick="openZoom(this.src)" onerror="this.src='https://via.placeholder.com/800x400?text=Showroom+5'"></div>
         </div>
-        <div class="slider-dots" id="aboutDots"><div class="s-dot active"></div><div class="s-dot"></div></div>
+        <div class="slider-dots" id="aboutDots"><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div></div>
     </div>
 
-<div class="section-label">Jadwal Operasional :</div>
-<div style="padding: 0 6% 20px;">
-    <div style="background: white; border-radius: 16px; border: 1px solid #e2e8f0; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-        <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee;">
-            <span style="font-weight: 600; font-size: 13px;">Senin - Sabtu</span>
-            <span style="color: var(--yamaha-blue); font-weight: 800; font-size: 13px;">09:00 - 18:00 WIB</span>
+    <div class="section-label">Jadwal Operasional :</div>
+    <div style="padding: 0 6% 20px;">
+        <div style="background: white; border-radius: 16px; border: 1px solid #e2e8f0; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee;">
+                <span style="font-weight: 600; font-size: 13px;">Senin - Sabtu</span>
+                <span style="color: var(--yamaha-blue); font-weight: 800; font-size: 13px;">09:00 - 18:00 WIB</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee;">
+                <span style="font-weight: 600; font-size: 13px;">Minggu / Tgl Merah</span>
+                <span style="color: var(--yamaha-red); font-weight: 800; font-size: 13px;">TUTUP (Janji Temu)</span>
+            </div>
+            <p style="font-size: 10px; color: var(--slate-gray); margin-top: 10px; font-style: italic;">
+                *Khusus hari Minggu, silakan hubungi Sales via WhatsApp untuk janji temu.
+            </p>
         </div>
-        <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee;">
-            <span style="font-weight: 600; font-size: 13px;">Minggu / Tgl Merah</span>
-            <span style="color: var(--yamaha-red); font-weight: 800; font-size: 13px;">TUTUP (Janji Temu)</span>
-        </div>
-        <p style="font-size: 10px; color: var(--slate-gray); margin-top: 10px; font-style: italic;">
-            *Khusus hari Minggu, silakan hubungi Sales via WhatsApp untuk janji temu.
-        </p>
     </div>
-</div>
-
 
     <div class="section-label">Lokasi Dealer :</div>
     <div class="map-container">
@@ -254,7 +252,7 @@
 
     <div id="zoomModal" onclick="this.style.display='none'"><img id="zoomImg" style="max-width:100%; max-height:90vh; border-radius:8px; object-fit:contain;"></div>
 
-    <script>
+<script>
     let rawData = []; 
 
     const CONFIG = { 
@@ -287,57 +285,51 @@
         }
     }
 
-    function updateRealTimeInfo() {
-        const now = new Date();
-        const isOpen = (now.getDay() >= 1 && now.getDay() <= 6) && (now.getHours() >= 9 && now.getHours() < 18);
-        document.getElementById('top-date').innerText = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-        document.getElementById('top-clock').innerText = now.toLocaleTimeString('id-ID', { hour12: false });
-        document.getElementById('top-status-badge').innerHTML = isOpen ? 
-            `<span class="dot-status dot-open"></span> BUKA` : `<span class="dot-status dot-closed"></span> TUTUP`;
-    }
-
+    // FUNGSI SINKRONISASI DOTS (SLIDER)
     function syncDots(scrollEl, targetId) {
-    const scroll = typeof scrollEl === 'string' ? document.getElementById(scrollEl) : scrollEl;
-    const target = document.getElementById(targetId);
-    if (!scroll || !target) return;
+        const scroll = typeof scrollEl === 'string' ? document.getElementById(scrollEl) : scrollEl;
+        const target = document.getElementById(targetId);
+        if (!scroll || !target) return;
 
-    const idx = Math.round(scroll.scrollLeft / scroll.offsetWidth);
+        // Ambil indeks slide yang sedang aktif berdasarkan posisi scroll
+        const idx = Math.round(scroll.scrollLeft / scroll.offsetWidth);
 
-    if (targetId.startsWith('counter')) {
-        const total = scroll.children.length;
-        target.innerText = `${idx + 1} / ${total}`;
-    } else {
-        const dots = target.children;
-        for (let i = 0; i < dots.length; i++) {
-            // Tambahkan pengecekan dots[i] agar tidak error
-            if (dots[i]) {
-                dots[i].classList.toggle('active', i === idx);
+        // Jika target adalah counter angka (misal: 1 / 3)
+        if (targetId.startsWith('counter')) {
+            const total = scroll.children.length;
+            target.innerText = `${idx + 1} / ${total}`;
+        } 
+        // Jika target adalah titik (dots)
+        else {
+            const dots = target.children;
+            for (let i = 0; i < dots.length; i++) {
+                if (dots[i]) {
+                    dots[i].classList.toggle('active', i === idx);
+                }
             }
         }
     }
-}
 
-function updateRealTimeInfo() {
-    const now = new Date();
-    const day = now.getDay(); // 0 = Minggu, 1 = Senin, ... 6 = Sabtu
-    const hour = now.getHours();
-    
-    // Buka Senin (1) sampai Sabtu (6), Jam 09:00 s/d 18:00
-    const isOpen = (day >= 1 && day <= 6) && (hour >= 9 && hour < 18);
-    
-    document.getElementById('top-date').innerText = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-    document.getElementById('top-clock').innerText = now.toLocaleTimeString('id-ID', { hour12: false });
-    
-    const badge = document.getElementById('top-status-badge');
-    if (isOpen) {
-        badge.innerHTML = `<span class="dot-status dot-open"></span> DEALER BUKA`;
-        badge.style.color = "var(--status-ok)";
-    } else {
-        badge.innerHTML = `<span class="dot-status dot-closed"></span> DEALER TUTUP`;
-        badge.style.color = "var(--yamaha-red)";
+    function updateRealTimeInfo() {
+        const now = new Date();
+        const day = now.getDay(); // 0 = Minggu, 1 = Senin, ... 6 = Sabtu
+        const hour = now.getHours();
+        
+        // Buka Senin (1) sampai Sabtu (6), Jam 09:00 s/d 18:00
+        const isOpen = (day >= 1 && day <= 6) && (hour >= 9 && hour < 18);
+        
+        document.getElementById('top-date').innerText = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+        document.getElementById('top-clock').innerText = now.toLocaleTimeString('id-ID', { hour12: false });
+        
+        const badge = document.getElementById('top-status-badge');
+        if (isOpen) {
+            badge.innerHTML = `<span class="dot-status dot-open"></span> DEALER BUKA`;
+            badge.style.color = "var(--status-ok)";
+        } else {
+            badge.innerHTML = `<span class="dot-status dot-closed"></span> DEALER TUTUP`;
+            badge.style.color = "var(--yamaha-red)";
+        }
     }
-}
-
 
     function startAutoSlide(scrollId, interval) {
         const scroll = document.getElementById(scrollId);
@@ -350,6 +342,7 @@ function updateRealTimeInfo() {
             scroll.scrollTo({ left: next * scroll.offsetWidth, behavior: 'smooth' });
         }, interval);
     }
+
     function renderMaster(filter = 'promo', query = '') {
         const container = document.getElementById('mainContainer');
         container.innerHTML = "";
@@ -370,20 +363,28 @@ function updateRealTimeInfo() {
             const status = m.stock?.toLowerCase().trim();
             const badgeClass = status === 'ready' ? 'stok-ready' : (status === 'inden' ? 'stok-inden' : 'stok-kosong');
             const promoTag = (m.promo && m.promo.trim() !== "") ? `<div class="promo-badge"><i class="fas fa-fire"></i> ${m.promo}</div>` : "";
+            const motorPrice = m.harga ? "Rp " + parseInt(m.harga.replace(/[^0-9]/g, "")).toLocaleString('id-ID') : '-';
+            const defaultImage = "https://via.placeholder.com/400x300?text=Gambar+Unit";
+
+            // Pastikan URL tujuan wa.me menggunakan string literal yang benar di seluruh tombol
+            const waUrl = `https://wa.me/${CONFIG.WA_PHONE}?text=Halo Sales Maju Jaya Abadi, saya ingin tanya ketersediaan unit ${encodeURIComponent(m.nama)}.`;
 
             container.innerHTML += `
             <div class="card">
                 <div class="gallery">
                     ${promoTag}
-                    <div class="img-counter" id="counter-${idx}">1 / ${imgs.length}</div>
+                    <div class="img-counter" id="counter-${idx}">1 / ${imgs.length > 0 ? imgs.length : 1}</div>
                     <div class="gallery-scroll" onscroll="syncDots(this, 'counter-${idx}')">
-                        ${imgs.map(p => `<div class="slide"><img src="${p}" loading="lazy" onclick="openZoom(this.src)"></div>`).join('')}
+                        ${imgs.length > 0 
+                            ? imgs.map(p => `<div class="slide"><img src="${p}" loading="lazy" onclick="openZoom(this.src)" onerror="this.src='${defaultImage}'"></div>`).join('')
+                            : `<div class="slide"><img src="${defaultImage}"></div>`
+                        }
                     </div>
                 </div>
                 <div class="card-info">
                     <div class="stok-badge ${badgeClass}">${m.stock || 'Cek Stok'}</div>
                     <h3 class="motor-name">${m.nama}</h3>
-                    <span class="new-price">${m.harga ? "Rp " + parseInt(m.harga.replace(/[^0-9]/g, "")).toLocaleString('id-ID') : '-'}</span>
+                    <span class="new-price">${motorPrice}</span>
                     <details>
                         <summary>Spesifikasi Produk</summary>
                         <div class="spec-container">
@@ -405,7 +406,8 @@ function updateRealTimeInfo() {
                             </div>
                         </div>
                     </details>
-                    <a href="https://wa.me/${CONFIG.WA_PHONE}?text=Halo Sales Maju Jaya Abadi, saya ingin tanya unit ${m.nama}" class="wa-btn" target="_blank">
+                    
+                    <a href="${waUrl}" class="wa-btn" target="_blank">
                         <i class="fab fa-whatsapp"></i> TANYA SALES
                     </a>
                 </div>
@@ -413,19 +415,21 @@ function updateRealTimeInfo() {
         });
     }
 
-
     function openZoom(src) { 
         document.getElementById('zoomImg').src = src; 
         document.getElementById('zoomModal').style.display = 'flex'; 
     }
     
-    const doSearch = () => renderMaster('promo', document.getElementById('mainSearch').value);
+    function doSearch() { 
+        renderMaster('promo', document.getElementById('mainSearch').value); 
+    }
     
-    const doFilter = (c, b) => {
+    function doFilter(c, b) {
         document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
         b.classList.add('active');
+        document.getElementById('mainSearch').value = ""; // Reset pencarian saat ganti tab
         renderMaster(c);
-    };
+    }
 
     // JALANKAN SAAT START
     updateRealTimeInfo();
